@@ -1,16 +1,23 @@
 ---
-title: "boost-outline"
+title: "BOOST-EDS WP3"
+subtitle: "work at BAS so far"
+author: "Thomas Zwagerman"
+institute: "British Antarctic Survey"
 format: 
   revealjs:
-    theme: dark
-editor: visual
+    css: https://cdn.web.bas.ac.uk/bas-style-kit/0.6.1/css/bas-style-kit.min.css
+    title-slide-attributes: 
+      data-background-image: https://nercacuk.sharepoint.com/sites/basdigitalwmod-communications/creative%20services%20assets/ppt_title_halley.jpg?
 ---
 
-## BOOST-EDS
+## BOOST-EDS {background-image=https://nercacuk.sharepoint.com/sites/basdigitalwmod-communications/creative%20services%20assets/ppt_page_glider01.jpg}
 - Proof-of-concept cloud workflow
 - Demonstrate EDS services within BAS
 - JASMIN Object Store, Datalabs
 - Records barriers and feed into WP4
+
+![](https://cdn.web.bas.ac.uk/bas-style-kit/0.6.1/img/logos-symbols/bas-logo-inverse-transparent-256.png)
+
 
 ## Technical Overview
 
