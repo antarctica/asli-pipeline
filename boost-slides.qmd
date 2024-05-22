@@ -1,16 +1,14 @@
 ---
-title: "BOOST-EDS WP3"
-subtitle: "work at BAS so far"
-author: "Thomas Zwagerman"
-institute: "British Antarctic Survey"
-format: 
-  revealjs:
-    css: https://cdn.web.bas.ac.uk/bas-style-kit/0.6.1/css/bas-style-kit.min.css
-    title-slide-attributes: 
-      data-background-image: https://nercacuk.sharepoint.com/sites/basdigitalwmod-communications/creative%20services%20assets/ppt_title_halley.jpg?
+title: BOOST-EDS WP3
+subtitle: Work completed so far
+format:
+  basdoc-revealjs: default
+author: Thomas Zwagerman
+institute: British Antarctic Survey
+date: last-modified
 ---
 
-## BOOST-EDS {background-image=https://nercacuk.sharepoint.com/sites/basdigitalwmod-communications/creative%20services%20assets/ppt_page_glider01.jpg}
+## BOOST-EDS
 - Proof-of-concept cloud workflow
 - Demonstrate EDS services within BAS
 - JASMIN Object Store, Datalabs
@@ -23,10 +21,12 @@ format:
 
 Overview of a "general" project
 
+
 ## Use-case 1: Amundsen Sea Low Index (ASLI)
 - Highly dynamic, mobile climatological low pressure system
 - Crucial in understanding regional change over West Antarctica
 - Good ASL representation improve climate models
+![The Amundsen Seas Low (ASL) (Hosking et al. 2016)](images/asl.jpg)
 
 ## Use-case 1: User requirements
 1. Run monthly, when new ERA5 data is released
@@ -55,12 +55,16 @@ image
 - Challenge is instrument size.
 - Deployed in fixed/moored location.
 
+![2G-ESP (Hansen et al. 2020)](images/2GESP-Hansenetal2020.jpeg)
+
 ## 3rd Generation ESP (3G-ESP)
 - Development of 3G-ESP, for deployment in autonomous underwater vehichles (AUV)
 - Demonstrated in Monterey Bay (Yamahara et al. 2019)
 - Allow sampling in remote areas of Southern Ocean and Antarctic Peninsula
 
-## 
+![3G-ESP (Yamahara et al. 2019)](images/3GESP-Yamaharaetal2019.jpg)
+
+## BAS and NERC Interaction
 - New £0.9m NERC-funded Marine Robotics Facility
 - Remote communications expertise
 - Reproducible Pipeline integrating with Data Commons & EDS cloud infrastructure
@@ -70,6 +74,8 @@ image
 Clark, M.S., Hoffman, J.I., Peck, L.S. et al. Multi-omics for studying and understanding polar life. Nat Commun 14, 7451 (2023). https://doi.org/10.1038/s41467-023-43209-y  
 
 Hansen, B.K., Jacobsen, M.W., Middelboe, A.L. et al. Remote, autonomous real-time monitoring of environmental DNA from commercial fish. Sci Rep 10, 13272 (2020). https://doi.org/10.1038/s41598-020-70206-8  
+
+Hosking, J. S., A. Orr, T. J. Bracegirdle, and J. Turner. Future circulation changes off West Antarctica: Sensitivity of the Amundsen Sea Low to projected anthropogenic forcing, Geophys. Res. Lett., 43, 367–376, (2016) https://doi:10.1002/2015GL067143
 
 Pargett, D.M., Birch, J.M., Preston, C.M, et al. Development of a Mobile Ecogenomic Sensor. Conference Paper OCEANS 2015 - MTS/IEEE Washington (2015). https://doi.org/10.23919/OCEANS.2015.7404361  
 

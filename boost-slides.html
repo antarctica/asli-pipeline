@@ -8,9 +8,10 @@
 <link href="boost-slides_files/libs/quarto-html/light-border.css" rel="stylesheet">
 <link href="boost-slides_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="boost-slides_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.3.353">
+  <meta name="generator" content="quarto-1.4.554">
 
   <meta name="author" content="Thomas Zwagerman">
+  <meta name="dcterms.date" content="2024-05-22">
   <title>BOOST-EDS WP3</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -157,7 +158,8 @@
   }
 
   .callout.callout-titled .callout-body > .callout-content > :last-child {
-    margin-bottom: 0.5rem;
+    padding-bottom: 0.5rem;
+    margin-bottom: 0;
   }
 
   .callout.callout-titled .callout-icon::before {
@@ -325,9 +327,9 @@
   <div class="reveal">
     <div class="slides">
 
-<section id="title-slide" data-background-image="https://nercacuk.sharepoint.com/sites/basdigitalwmod-communications/creative%20services%20assets/ppt_title_halley.jpg?web=1" class="quarto-title-block center">
+<section id="title-slide" data-background-image="https://nercacuk.sharepoint.com/sites/basdigitalwmod-communications/creative%20services%20assets/ppt_title_halley.jpg" class="quarto-title-block center">
   <h1 class="title">BOOST-EDS WP3</h1>
-  <p class="subtitle">work at BAS so far</p>
+  <p class="subtitle">Work completed so far</p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -340,8 +342,9 @@ Thomas Zwagerman
     </div>
 </div>
 
+  <p class="date">2024-05-22</p>
 </section>
-<section id="boost-eds" class="slide level2" data-background-image="https://nercacuk.sharepoint.com/sites/basdigitalwmod-communications/creative%20services%20assets/ppt_page_glider01.jpg">
+<section id="boost-eds" class="slide level2">
 <h2>BOOST-EDS</h2>
 <ul>
 <li>Proof-of-concept cloud workflow</li>
@@ -360,7 +363,7 @@ Thomas Zwagerman
 <ul>
 <li>Highly dynamic, mobile climatological low pressure system</li>
 <li>Crucial in understanding regional change over West Antarctica</li>
-<li>Good ASL representation improve climate models</li>
+<li>Good ASL representation improve climate models <img data-src="images/asl.jpg" alt="The Amundsen Seas Low (ASL) (Hosking et al.&nbsp;2016)"></li>
 </ul>
 </section>
 <section id="use-case-1-user-requirements" class="slide level2">
@@ -403,7 +406,8 @@ Thomas Zwagerman
 <li>Challenge is instrument size.</li>
 <li>Deployed in fixed/moored location.</li>
 </ul>
-</section>
+
+<img data-src="images/2GESP-Hansenetal2020.jpeg" class="r-stretch quarto-figure-center"><p class="caption">2G-ESP (Hansen et al.&nbsp;2020)</p></section>
 <section id="rd-generation-esp-3g-esp" class="slide level2">
 <h2>3rd Generation ESP (3G-ESP)</h2>
 <ul>
@@ -411,9 +415,10 @@ Thomas Zwagerman
 <li>Demonstrated in Monterey Bay (Yamahara et al.&nbsp;2019)</li>
 <li>Allow sampling in remote areas of Southern Ocean and Antarctic Peninsula</li>
 </ul>
-</section>
-<section id="section" class="slide level2">
-<h2></h2>
+
+<img data-src="images/3GESP-Yamaharaetal2019.jpg" class="r-stretch quarto-figure-center"><p class="caption">3G-ESP (Yamahara et al.&nbsp;2019)</p></section>
+<section id="bas-and-nerc-interaction" class="slide level2">
+<h2>BAS and NERC Interaction</h2>
 <ul>
 <li>New £0.9m NERC-funded Marine Robotics Facility</li>
 <li>Remote communications expertise</li>
@@ -425,10 +430,13 @@ Thomas Zwagerman
 <h2>References</h2>
 <p>Clark, M.S., Hoffman, J.I., Peck, L.S. et al.&nbsp;Multi-omics for studying and understanding polar life. Nat Commun 14, 7451 (2023). https://doi.org/10.1038/s41467-023-43209-y</p>
 <p>Hansen, B.K., Jacobsen, M.W., Middelboe, A.L. et al.&nbsp;Remote, autonomous real-time monitoring of environmental DNA from commercial fish. Sci Rep 10, 13272 (2020). https://doi.org/10.1038/s41598-020-70206-8</p>
+<p>Hosking, J. S., A. Orr, T. J. Bracegirdle, and J. Turner. Future circulation changes off West Antarctica: Sensitivity of the Amundsen Sea Low to projected anthropogenic forcing, Geophys. Res. Lett., 43, 367–376, (2016) https://doi:10.1002/2015GL067143</p>
 <p>Pargett, D.M., Birch, J.M., Preston, C.M, et al.&nbsp;Development of a Mobile Ecogenomic Sensor. Conference Paper OCEANS 2015 - MTS/IEEE Washington (2015). https://doi.org/10.23919/OCEANS.2015.7404361</p>
 <p>Yamahara, K.M., Preston, C.M., Birch, J. et al.&nbsp;In situ Autonomous Acquisition and Preservation of Marine Environmental DNA Using an Autonomous Underwater Vehicle. Frontiers in Marine Science, 6(373) (2019). https://doi.org/10.3389/fmars.2019.00373</p>
+<div class="quarto-auto-generated-content">
 <div class="footer footer-default">
 
+</div>
 </div>
 </section>
     </div>
@@ -457,7 +465,6 @@ Thomas Zwagerman
       Reveal.initialize({
 'controlsAuto': true,
 'previewLinksAuto': false,
-'smaller': false,
 'pdfSeparateFragments': false,
 'autoAnimateEasing': "ease",
 'autoAnimateDuration': 1,
@@ -718,10 +725,27 @@ Thomas Zwagerman
         // clear code selection
         e.clearSelection();
       });
-      function tippyHover(el, contentFn) {
+        var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+        var mailtoRegex = new RegExp(/^mailto:/);
+          var filterRegex = new RegExp('/' + window.location.host + '/');
+        var isInternal = (href) => {
+            return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+        }
+        // Inspect non-navigation links and adorn them if external
+     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+        for (var i=0; i<links.length; i++) {
+          const link = links[i];
+          if (!isInternal(link.href)) {
+            // undo the damage that might have been done by quarto-nav.js in the case of
+            // links that we want to consider external
+            if (link.dataset.originalHref !== undefined) {
+              link.href = link.dataset.originalHref;
+            }
+          }
+        }
+      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
         const config = {
           allowHTML: true,
-          content: contentFn,
           maxWidth: 500,
           delay: 100,
           arrow: false,
@@ -731,8 +755,17 @@ Thomas Zwagerman
           interactive: true,
           interactiveBorder: 10,
           theme: 'light-border',
-          placement: 'bottom-start'
+          placement: 'bottom-start',
         };
+        if (contentFn) {
+          config.content = contentFn;
+        }
+        if (onTriggerFn) {
+          config.onTrigger = onTriggerFn;
+        }
+        if (onUntriggerFn) {
+          config.onUntrigger = onUntriggerFn;
+        }
           config['offset'] = [0,0];
           config['maxWidth'] = 700;
         window.tippy(el, config); 
@@ -746,7 +779,11 @@ Thomas Zwagerman
           try { href = new URL(href).hash; } catch {}
           const id = href.replace(/^#\/?/, "");
           const note = window.document.getElementById(id);
-          return note.innerHTML;
+          if (note) {
+            return note.innerHTML;
+          } else {
+            return "";
+          }
         });
       }
       const findCites = (el) => {
