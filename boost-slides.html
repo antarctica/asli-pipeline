@@ -8,10 +8,10 @@
 <link href="boost-slides_files/libs/quarto-html/light-border.css" rel="stylesheet">
 <link href="boost-slides_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="boost-slides_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.4.554">
+  <meta name="generator" content="quarto-1.3.353">
 
   <meta name="author" content="Thomas Zwagerman">
-  <meta name="dcterms.date" content="2024-05-22">
+  <meta name="dcterms.date" content="2024-05-23">
   <title>BOOST-EDS WP3</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -158,8 +158,7 @@
   }
 
   .callout.callout-titled .callout-body > .callout-content > :last-child {
-    padding-bottom: 0.5rem;
-    margin-bottom: 0;
+    margin-bottom: 0.5rem;
   }
 
   .callout.callout-titled .callout-icon::before {
@@ -342,7 +341,7 @@ Thomas Zwagerman
     </div>
 </div>
 
-  <p class="date">2024-05-22</p>
+  <p class="date">2024-05-23</p>
 </section>
 <section id="boost-eds" class="slide level2">
 <h2>BOOST-EDS</h2>
@@ -356,16 +355,20 @@ Thomas Zwagerman
 <img data-src="https://cdn.web.bas.ac.uk/bas-style-kit/0.6.1/img/logos-symbols/bas-logo-inverse-transparent-256.png" class="r-stretch"></section>
 <section id="technical-overview" class="slide level2">
 <h2>Technical Overview</h2>
-<p>Overview of a “general” project</p>
-</section>
+
+<img data-src="images/cloud-example.jpg" class="r-stretch"></section>
 <section id="use-case-1-amundsen-sea-low-index-asli" class="slide level2">
 <h2>Use-case 1: Amundsen Sea Low Index (ASLI)</h2>
 <ul>
 <li>Highly dynamic, mobile climatological low pressure system</li>
 <li>Crucial in understanding regional change over West Antarctica</li>
-<li>Good ASL representation improve climate models <img data-src="images/asl.jpg" alt="The Amundsen Seas Low (ASL) (Hosking et al.&nbsp;2016)"></li>
+<li>Good ASL representation improve climate models</li>
 </ul>
 </section>
+<section id="asli-image" class="slide level2">
+<h2>ASLI Image</h2>
+
+<img data-src="images/asl.jpg" class="r-stretch quarto-figure-center"><p class="caption">The Amundsen Seas Low (ASL) (Hosking et al.&nbsp;2016)</p></section>
 <section id="use-case-1-user-requirements" class="slide level2">
 <h2>Use-case 1: User requirements</h2>
 <ol type="1">
@@ -373,20 +376,18 @@ Thomas Zwagerman
 <li>Human in-the-loop to approve data transfer</li>
 <li>Automatic ingestion into the PDC, appending dataset</li>
 <li>ERA5 re-calculation detection, triggering new DOI</li>
+<li>Datalabs notebooks/application to interact with data</li>
 </ol>
-</section>
-<section id="use-case-1-human-in-the-loop" class="slide level2">
-<h2>Use-case 1: Human in the loop</h2>
-<p>image</p>
 </section>
 <section id="use-case-1-technical-overview" class="slide level2">
 <h2>Use-case 1: Technical Overview</h2>
-</section>
+
+<img data-src="images/asli-example.jpg" class="r-stretch"></section>
 <section id="use-case-1-summary" class="slide level2">
 <h2>Use-case 1: Summary</h2>
 <ul>
 <li>Useful demonstration of EDS services</li>
-<li>Exposes limitations in current EDS offering</li>
+<li>Exposes limitations in current EDS offering, feeding into WP4</li>
 <li>Not a genomics dataset</li>
 </ul>
 </section>
@@ -395,7 +396,7 @@ Thomas Zwagerman
 <ul>
 <li>Multi-omics for studying and understanding polar life, Clark et al.&nbsp;(2023)</li>
 <li>Adaptation to extremely cold environments</li>
-<li>Autonomous remote collection of environmental DNA (eDNA)</li>
+<li>Autonomous remote collection of environmental DNA (eDNA) using AUVs</li>
 <li>Sampling Bias to accessible sites</li>
 </ul>
 </section>
@@ -403,18 +404,26 @@ Thomas Zwagerman
 <h2>2nd Generation Environmental Sampling Processors (2G-ESP)</h2>
 <ul>
 <li>Demonstrated for eDNA sampling in commercial fish (Hansen et al.&nbsp;2020)</li>
+<li>Integrated Analysis</li>
 <li>Challenge is instrument size.</li>
 <li>Deployed in fixed/moored location.</li>
 </ul>
+</section>
+<section id="g-esp-image" class="slide level2">
+<h2>2G-ESP Image</h2>
 
-<img data-src="images/2GESP-Hansenetal2020.jpeg" class="r-stretch quarto-figure-center"><p class="caption">2G-ESP (Hansen et al.&nbsp;2020)</p></section>
+<img data-src="images/2GESP-Hansenetal2020.webp" class="r-stretch quarto-figure-center"><p class="caption">2G-ESP (Hansen et al.&nbsp;2020)</p></section>
 <section id="rd-generation-esp-3g-esp" class="slide level2">
 <h2>3rd Generation ESP (3G-ESP)</h2>
 <ul>
-<li>Development of 3G-ESP, for deployment in autonomous underwater vehichles (AUV)</li>
+<li>Development of 3G-ESP, for deployment in AUV</li>
 <li>Demonstrated in Monterey Bay (Yamahara et al.&nbsp;2019)</li>
 <li>Allow sampling in remote areas of Southern Ocean and Antarctic Peninsula</li>
+<li>At the expense of integrated analysis = lag time between sampling and analysis</li>
 </ul>
+</section>
+<section id="g-esp-image-1" class="slide level2">
+<h2>3G-ESP Image</h2>
 
 <img data-src="images/3GESP-Yamaharaetal2019.jpg" class="r-stretch quarto-figure-center"><p class="caption">3G-ESP (Yamahara et al.&nbsp;2019)</p></section>
 <section id="bas-and-nerc-interaction" class="slide level2">
@@ -422,21 +431,37 @@ Thomas Zwagerman
 <ul>
 <li>New £0.9m NERC-funded Marine Robotics Facility</li>
 <li>Remote communications expertise</li>
+<li>Deep field deployment</li>
+<li>PDC + EDS expertise</li>
+</ul>
+<h3 id="proposal">Proposal</h3>
+<ul>
+<li>And end-to-end solution to ingesting multi-omics data into Digital Twins</li>
+<li>Bridge several gaps, integrated analysis on AUVs, IoT edge, sampling bias, genomics in DT, and more!</li>
+</ul>
+</section>
+<section id="technical-draft" class="slide level2">
+<h2>Technical Draft</h2>
+
+<img data-src="images/multiomics-for-dts.drawio.png" class="r-stretch"></section>
+<section id="future-project-summary" class="slide level2">
+<h2>Future Project Summary</h2>
+<ul>
+<li>Integrated Analysis for 3G-ESP</li>
+<li>Close accessible site sampling bias</li>
 <li>Reproducible Pipeline integrating with Data Commons &amp; EDS cloud infrastructure</li>
 <li>Incorporate polar biodiversity in federated Digital Twin</li>
 </ul>
 </section>
-<section id="references" class="slide level2">
+<section id="references" class="slide level2 smaller">
 <h2>References</h2>
 <p>Clark, M.S., Hoffman, J.I., Peck, L.S. et al.&nbsp;Multi-omics for studying and understanding polar life. Nat Commun 14, 7451 (2023). https://doi.org/10.1038/s41467-023-43209-y</p>
 <p>Hansen, B.K., Jacobsen, M.W., Middelboe, A.L. et al.&nbsp;Remote, autonomous real-time monitoring of environmental DNA from commercial fish. Sci Rep 10, 13272 (2020). https://doi.org/10.1038/s41598-020-70206-8</p>
 <p>Hosking, J. S., A. Orr, T. J. Bracegirdle, and J. Turner. Future circulation changes off West Antarctica: Sensitivity of the Amundsen Sea Low to projected anthropogenic forcing, Geophys. Res. Lett., 43, 367–376, (2016) https://doi:10.1002/2015GL067143</p>
 <p>Pargett, D.M., Birch, J.M., Preston, C.M, et al.&nbsp;Development of a Mobile Ecogenomic Sensor. Conference Paper OCEANS 2015 - MTS/IEEE Washington (2015). https://doi.org/10.23919/OCEANS.2015.7404361</p>
 <p>Yamahara, K.M., Preston, C.M., Birch, J. et al.&nbsp;In situ Autonomous Acquisition and Preservation of Marine Environmental DNA Using an Autonomous Underwater Vehicle. Frontiers in Marine Science, 6(373) (2019). https://doi.org/10.3389/fmars.2019.00373</p>
-<div class="quarto-auto-generated-content">
 <div class="footer footer-default">
 
-</div>
 </div>
 </section>
     </div>
@@ -465,6 +490,7 @@ Thomas Zwagerman
       Reveal.initialize({
 'controlsAuto': true,
 'previewLinksAuto': false,
+'smaller': false,
 'pdfSeparateFragments': false,
 'autoAnimateEasing': "ease",
 'autoAnimateDuration': 1,
@@ -725,27 +751,10 @@ Thomas Zwagerman
         // clear code selection
         e.clearSelection();
       });
-        var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-        var mailtoRegex = new RegExp(/^mailto:/);
-          var filterRegex = new RegExp('/' + window.location.host + '/');
-        var isInternal = (href) => {
-            return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-        }
-        // Inspect non-navigation links and adorn them if external
-     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
-        for (var i=0; i<links.length; i++) {
-          const link = links[i];
-          if (!isInternal(link.href)) {
-            // undo the damage that might have been done by quarto-nav.js in the case of
-            // links that we want to consider external
-            if (link.dataset.originalHref !== undefined) {
-              link.href = link.dataset.originalHref;
-            }
-          }
-        }
-      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      function tippyHover(el, contentFn) {
         const config = {
           allowHTML: true,
+          content: contentFn,
           maxWidth: 500,
           delay: 100,
           arrow: false,
@@ -755,17 +764,8 @@ Thomas Zwagerman
           interactive: true,
           interactiveBorder: 10,
           theme: 'light-border',
-          placement: 'bottom-start',
+          placement: 'bottom-start'
         };
-        if (contentFn) {
-          config.content = contentFn;
-        }
-        if (onTriggerFn) {
-          config.onTrigger = onTriggerFn;
-        }
-        if (onUntriggerFn) {
-          config.onUntrigger = onUntriggerFn;
-        }
           config['offset'] = [0,0];
           config['maxWidth'] = 700;
         window.tippy(el, config); 
@@ -779,11 +779,7 @@ Thomas Zwagerman
           try { href = new URL(href).hash; } catch {}
           const id = href.replace(/^#\/?/, "");
           const note = window.document.getElementById(id);
-          if (note) {
-            return note.innerHTML;
-          } else {
-            return "";
-          }
+          return note.innerHTML;
         });
       }
       const findCites = (el) => {
