@@ -1,0 +1,113 @@
+---
+title: BOOST-EDS WP3
+subtitle: Work completed so far
+format:
+  basdoc-revealjs: default
+author: Thomas Zwagerman
+institute: British Antarctic Survey
+date: last-modified
+---
+
+## BOOST-EDS
+
+-   Proof-of-concept cloud workflow
+-   Demonstrate EDS services within BAS
+-   JASMIN Object Store, Datalabs
+-   Records barriers and feed into WP4
+
+![](https://cdn.web.bas.ac.uk/bas-style-kit/0.6.1/img/logos-symbols/bas-logo-inverse-transparent-256.png)
+
+## Technical Overview
+
+![](images/cloud-example.jpg)
+
+## Use-case 1: Amundsen Sea Low Index (ASLI)
+
+-   Highly dynamic, mobile climatological low pressure system
+-   Crucial in understanding regional change over West Antarctica
+-   Good ASL representation improve climate models
+
+## ASLI Image
+
+![The Amundsen Seas Low (ASL) (Hosking et al. 2016)](images/asl.jpg)
+
+## Use-case 1: User requirements
+
+1.  Run monthly, when new ERA5 data is released
+2.  Human in-the-loop to approve data transfer
+3.  Automatic ingestion into the PDC, appending dataset
+4.  ERA5 re-calculation detection, triggering new DOI
+5.  Datalabs notebooks/application to interact with data
+
+## Use-case 1: Technical Overview
+![](images/asli-example.jpg)
+
+## Use-case 1: Summary
+
+-   Useful demonstration of EDS services
+-   Exposes limitations in current EDS offering, feeding into WP4
+-   Not a genomics dataset
+
+## Multi-Omics for Polar Science
+
+-   Multi-omics for studying and understanding polar life, Clark et al. (2023)
+-   Adaptation to extremely cold environments
+-   Autonomous remote collection of environmental DNA (eDNA) using AUVs
+-   Sampling Bias to accessible sites
+
+## 2nd Generation Environmental Sampling Processors (2G-ESP)
+
+-   Demonstrated for eDNA sampling in commercial fish (Hansen et al. 2020)
+-   Integrated Analysis
+-   Challenge is instrument size.
+-   Deployed in fixed/moored location.
+
+## 2G-ESP Image
+
+![2G-ESP (Hansen et al. 2020)](images/2GESP-Hansenetal2020.webp)
+
+## 3rd Generation ESP (3G-ESP)
+
+-   Development of 3G-ESP, for deployment in AUV
+-   Demonstrated in Monterey Bay (Yamahara et al. 2019)
+-   Allow sampling in remote areas of Southern Ocean and Antarctic Peninsula
+-   At the expense of integrated analysis = lag time between sampling and analysis
+
+## 3G-ESP Image
+
+![3G-ESP (Yamahara et al. 2019)](images/3GESP-Yamaharaetal2019.jpg)
+
+## BAS and NERC Interaction
+
+-   New £0.9m NERC-funded Marine Robotics Facility
+-   Remote communications expertise
+-   Deep field deployment
+-   PDC + EDS expertise
+
+### Proposal
+- And end-to-end solution to ingesting multi-omics data into Digital Twins
+- Bridge several gaps, integrated analysis on AUVs, IoT edge, sampling bias, genomics in DT, and more!
+
+## Technical Draft
+
+![](images/multiomics-for-dts.drawio.png)
+
+## Future Project Summary
+
+-   Integrated Analysis for 3G-ESP
+-   Close accessible site sampling bias
+-   Reproducible Pipeline integrating with Data Commons & EDS cloud infrastructure
+-   Incorporate polar biodiversity in federated Digital Twin
+
+
+## References {.smaller}
+
+Clark, M.S., Hoffman, J.I., Peck, L.S. et al. Multi-omics for studying and understanding polar life. Nat Commun 14, 7451 (2023). https://doi.org/10.1038/s41467-023-43209-y
+
+Hansen, B.K., Jacobsen, M.W., Middelboe, A.L. et al. Remote, autonomous real-time monitoring of environmental DNA from commercial fish. Sci Rep 10, 13272 (2020). https://doi.org/10.1038/s41598-020-70206-8
+
+Hosking, J. S., A. Orr, T. J. Bracegirdle, and J. Turner. Future circulation changes off West Antarctica: Sensitivity of the Amundsen Sea Low to projected anthropogenic forcing, Geophys. Res. Lett., 43, 367--376, (2016) https://doi:10.1002/2015GL067143
+
+Pargett, D.M., Birch, J.M., Preston, C.M, et al. Development of a Mobile Ecogenomic Sensor. Conference Paper OCEANS 2015 - MTS/IEEE Washington (2015). https://doi.org/10.23919/OCEANS.2015.7404361
+
+Yamahara, K.M., Preston, C.M., Birch, J. et al. In situ Autonomous Acquisition and Preservation of Marine Environmental DNA Using an Autonomous Underwater Vehicle. Frontiers in Marine Science, 6(373) (2019). https://doi.org/10.3389/fmars.2019.00373
