@@ -43,10 +43,11 @@ date: last-modified
 ![](images/asli-example.jpg)
 
 ## Use-case 1: Summary
-
--   Useful demonstration of EDS services
--   Exposes limitations in current EDS offering, feeding into WP4
--   Not a genomics dataset
+- Useful demonstration of EDS services
+- Exposes limitations in current EDS offering
+- Not a genomics dataset
+- Quick implementation, project needs
+- Focus is on feeding into WP4
 
 ## Multi-Omics for Polar Science
 
