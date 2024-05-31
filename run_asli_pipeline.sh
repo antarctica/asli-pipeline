@@ -17,7 +17,9 @@ asli_data_era5 -s 2022
 # Do we need to check whether data has changed here?
 
 # Run calculation, specifying output location
+# output.csv will need to be renamed to sensible unique identifyer 
 asli_calc ERA5/monthly/era5_mean_sea_level_pressure_monthly_*.nc -o /gws/nopw/j04/dit/users/thozwa/output_csv/output.csv
+# probably move into sbatch to run on lotus - not strictly required but nice for reproducibility
 
 # Move output into s3 bucket, making sure /.s3cfg file is present
 s3cmd put output_csv/output.csv s3://asli
