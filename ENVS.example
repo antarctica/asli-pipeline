@@ -1,0 +1,15 @@
+##
+# Text
+
+# Location that pipeline is stored, referenced by most scripts
+export PIPELINE_DIRECTORY=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+export DATA_DIR=${DATA_DIR:-${HOME}/${PIPELINE_DIRECTORY}/data}
+
+# Date for indexing
+DATE=$(date --utc +"%Y-%m-%d")
+CURRENT_YEAR=$(date --utc +"%Y")
+
+# ERA5 Downloading parameters
+export DATA_ARGS_ERA5="$(-s 2022 -n "${CURRENT_YEAR})"
+
+# Output Filenames and Directories

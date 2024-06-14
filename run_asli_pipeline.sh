@@ -17,7 +17,7 @@ fi
 asli_data_lsm
 
 # Downloading latest ERA5 data
-asli_data_era5 -s 2022
+asli_data_era5 $DATA_ARGS_ERA5
 
 # Do we need to check whether data has changed here?
 
@@ -31,10 +31,3 @@ s3cmd put output_csv/output.csv s3://asli
 
 # Clean up ERA5 data, not implementing until production
 # rm  ERA5/monthly/era5_*.nc
-
-
-
-
-
-
-
