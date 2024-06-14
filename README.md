@@ -16,8 +16,8 @@ source aslienv/bin/activate
 
 ### Packages and Virtual Environments on JASMIN
 If you are working on JASMIN, it is good to familiarise yourself with managing software environments on Jasmin:
-    * [Quick Start on software for JASMIN](https://help.jasmin.ac.uk/docs/software-on-jasmin/quickstart-software-envs/).
-    * [Python Virtual Environments for JASMIN](https://help.jasmin.ac.uk/docs/software-on-jasmin/python-virtual-environments/).
+    *[Quick Start on software for JASMIN](https://help.jasmin.ac.uk/docs/software-on-jasmin/quickstart-software-envs/).
+    *[Python Virtual Environments for JASMIN](https://help.jasmin.ac.uk/docs/software-on-jasmin/python-virtual-environments/).
 
 ## Download the `asli` package
 Install the `asli` package from Github using pip: `pip install git+https://github.com/davidwilby/amundsen-sea-low-index`, as per the instructions in the `amundsen-sea-low-index` [repository(https://github.com/davidwilby/amundsen-sea-low-index)].
@@ -33,17 +33,17 @@ nano $HOME/.cdsapirc
 ```
 
 ## Configuration
-This pipeline revolves around the ENVS file to provide the necessary configuration items. This can easily be derived from the `ENVS.example` file to a new file, then symbolically linked. Comments are available in `ENVS.example` to assist you with the editing process.
-```
+This pipeline revolves around the `ENVS` file to provide the necessary configuration items. This can easily be derived from the `ENVS.example` file to a new file, then symbolically linked. Comments are available in `ENVS.example` to assist you with the editing process.
+```bash
 cp ENVS.example ENVS.myconfig
 ln -sf ENVS.myconfig ENVS
 # Edit ENVS.myconfig to customise parameters for the pipeline
 ```
 
 ### Data Output to JASMIN Object Store
-If you configure your data to be written out to the JASMIN Object Store, you will need to configure `s3cmd` to access your object storage tenancy and bucket.
+The pipeline uses `s3cmd` to  interact with S3 compatible Object Storage. If you configure your data to be written out to the JASMIN Object Store, you will need to configure `s3cmd` to access your object storage tenancy and bucket.
 
-You will need to generate an access key, and store it in a `~/.s3cfg` file. Full instructions on how to [generate an access key on JASMIN](https://help.jasmin.ac.uk/docs/short-term-project-storage/using-the-jasmin-object-store/#creating-an-access-key-and-secret) and [a s3cfg file to use s3cmd](https://help.jasmin.ac.uk/docs/short-term-project-storage/using-the-jasmin-object-store/#using-s3cmd) are in the JASMIN documentation.
+You will need to generate an access key, and store it in a `~/.s3cfg` file. Full instructions on how to [generate an access key on JASMIN](https://help.jasmin.ac.uk/docs/short-term-project-storage/using-the-jasmin-object-store/#creating-an-access-key-and-secret) and an [s3cfg file](https://help.jasmin.ac.uk/docs/short-term-project-storage/using-the-jasmin-object-store/#using-s3cmd)  to use `s3cmd` are in the JASMIN documentation.
 
 ## Interaction with Datalabs
 The results of this pipeline are displayed in an [application hosted on Datalabs](https://ditbas-asliapp.datalabs.ceh.ac.uk/).
