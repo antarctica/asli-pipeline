@@ -16,11 +16,11 @@ source aslienv/bin/activate
 
 ### Packages and Virtual Environments on JASMIN
 If you are working on JASMIN, it is good to familiarise yourself with managing software environments on Jasmin:
-    *[Quick Start on software for JASMIN](https://help.jasmin.ac.uk/docs/software-on-jasmin/quickstart-software-envs/).
-    *[Python Virtual Environments for JASMIN](https://help.jasmin.ac.uk/docs/software-on-jasmin/python-virtual-environments/).
+    * [Quick Start on software for JASMIN](https://help.jasmin.ac.uk/docs/software-on-jasmin/quickstart-software-envs/).
+    * [Python Virtual Environments for JASMIN](https://help.jasmin.ac.uk/docs/software-on-jasmin/python-virtual-environments/).
 
 ## Download the `asli` package
-Install the `asli` package from Github using pip: `pip install git+https://github.com/davidwilby/amundsen-sea-low-index`, as per the instructions in the `amundsen-sea-low-index` [repository(https://github.com/davidwilby/amundsen-sea-low-index)].
+Install the `asli` package from Github using pip: `pip install git+https://github.com/davidwilby/amundsen-sea-low-index`, as per the instructions in the `amundsen-sea-low-index` [repository](https://github.com/davidwilby/amundsen-sea-low-index).
 
 ## Setting up Climate Data Store API
 The `asli` package will not be able to download ERA5 data without access to the [Copernicus Climate Data Store](https://cds.climate.copernicus.eu/cdsapp#!/home).
@@ -55,7 +55,14 @@ Follow this [tutorial to see how Datalabs and the JASMIN Object Store interact](
 
 ## Automating the pipeline cron
 
-## Citations
+## Citation
+If you use this pipeline in your work, please cite this repository by using the 'Cite this repostory' button on the top right of this repository.
+
+>
+
+## References
+Brown, M. J., & Chevuturi, A. object_store_tutorial [Computer software]. https://github.com/NERC-CEH/object_store_tutorial
+
 Hosking, J. S., A. Orr, T. J. Bracegirdle, and J. Turner (2016), Future circulation changes off West Antarctica: Sensitivity of the Amundsen Sea Low to projected anthropogenic forcing, Geophys. Res. Lett., 43, 367–376, doi:10.1002/2015GL067143.
 
 Hosking, J. S., & Wilby, D. asli [Computer software]. https://github.com/scotthosking/amundsen-sea-low-index
