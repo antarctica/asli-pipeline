@@ -1,9 +1,14 @@
 #!/bin/bash
-
 set -e
 
-# Create data directory if it is not present
-DATA_DIR="data/ERA5/monthly"
+# Location that pipeline is stored, referenced by most scripts
+PIPELINE_DIRECTORY=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+
+# Date for indexing
+DATE=$(date --utc +"%Y-%m-%d")
+
+# Activative environment
+source ${pipeline_directory}/venv/bin/activate
 
 if [ ! -d "$DATA_DIR" ]; then
   mkdir $DATA_DIR
