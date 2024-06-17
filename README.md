@@ -55,10 +55,16 @@ Follow this [tutorial to see how Datalabs and the JASMIN Object Store interact](
 
 ## Automating the pipeline cron
 
+## Technical Overview
+See below for a technical overview of the pipeline, and application hosting on Datalabs. 
+![](img/asli-technical-overview.png)
+
+We are using a [JASMIN](https://jasmin.ac.uk/) group workspace (GWS) to run a data processing pipeline. Using the [Copernicus Climate Data Store API](https://cds.climate.copernicus.eu/#!/home), ERA5 data is read in. Calculations are then performed on [LOTUS](https://help.jasmin.ac.uk/docs/batch-computing/lotus-overview/) using `asli` functions.Output data is stored on [JASMIN Object Storage](https://help.jasmin.ac.uk/docs/short-term-project-storage/using-the-jasmin-object-store/). This data is read in and displayed by this application. This application in turn is [hosted on Datalabs](https://datalab.datalabs.ceh.ac.uk/). 
+
+This means compute, data storage and application hosting are all separated. Each component could also be deployed on different infrastructure, for example BAS HPCs or commercial cloud providers.
+
 ## Citation
 If you use this pipeline in your work, please cite this repository by using the 'Cite this repostory' button on the top right of this repository.
-
->
 
 ## References
 Brown, M. J., & Chevuturi, A. object_store_tutorial [Computer software]. https://github.com/NERC-CEH/object_store_tutorial
