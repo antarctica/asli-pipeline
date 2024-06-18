@@ -14,13 +14,18 @@ DATE=$(date --utc +"%Y-%m-%d")
 source ${ASLI_VENV}
 
 # Create input and output directories, if they do not already exist
-if [ ! -d "$DATA_DIR" ]; then
-  mkdir -p $DATA_DIR
-fi
+# Put all relevant directories in a list
+DIR_LIST=($DATA_DIR $OUTPUT_DIR)
 
-if [ ! -d "$OUTPUT_DIR" ]; then
-  mkdir -p $OUTPUT_DIR
-fi
+# Create them if they do not exist
+for DIR in ${DIR_LIST[@]};
+do
+	if [ ! -d $DIR ]; then
+  		mkdir -p $DIR
+		echo "Created $DIR"
+	fi
+done
+
 
 # Fetch land sea mask, automatically writes in data directory
 # Everything is pre-set in asli, no arguments needed for our purpose
