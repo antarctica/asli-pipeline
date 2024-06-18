@@ -1,0 +1,24 @@
+cff-version: 1.2.0
+title: boost-eds-pipeline
+message: >-
+  If you use this software, please cite it using the
+  metadata from this file.
+type: software
+authors:
+  - given-names: Thomas
+    family-names: Zwagerman
+    email: thozwa@bas.ac.uk
+    affiliation: British Antarctic Survey
+    orcid: 'https://orcid.org/0009-0003-3742-3234'
+repository-code: 'https://github.com/antarctica/boost-eds-pipeline'
+abstract: >-
+  This repository contains a pipeline for operational execution of the Amundsen Sea Ice Low calculations, provided in the asli package.
+  The functions in the asli package are described in detail in the package repository amundsen-sea-low-index.
+keywords:
+  - object storage
+  - JASMIN
+  - cloud compute
+  - cloud
+  - pipeline
+  - Datalabs
+license: MIT
