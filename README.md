@@ -58,8 +58,9 @@ Before running the pipeline, make sure you have followed the steps above:
    1. Cloned the pipeline.
    2. Set up your environment.
    3. Installed `asli`.
-   4. Set configurations `ENVS.config` and symbolically linked to `ENVS`.
-   5. Set configurations for the Object Store in `.s3cfg`.
+   4. Set CDS API access with `.cdsapirc`.
+   5. Set configurations `ENVS.config` and symbolically linked to `ENVS`.
+   6. Set configurations for the Object Store in `.s3cfg`.
 
 You can now run the pipeline:
 ```bash
