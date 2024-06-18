@@ -1,15 +1,20 @@
 ##
-# Text
+# text
 
 # Location that pipeline is stored, referenced by most scripts
 export PIPELINE_DIRECTORY=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
-export DATA_DIR=${DATA_DIR:-${HOME}/${PIPELINE_DIRECTORY}/data}
 
-# Date for indexing
-DATE=$(date --utc +"%Y-%m-%d")
-CURRENT_YEAR=$(date --utc +"%Y")
+# Set input and output directories, asli functions do not handle this 
+export DATA_DIR=${DATA_DIR:-${PIPELINE_DIRECTORY}/data/ERA5/monthly}
+export OUTPUT_DIR=${OUTPUT_DIR:-${PIPELINE_DIRECTORY}/output}
+
+# Specify environment so it does not need to be called prior to running
+export ASLI_VENV=${ASLI_VENV:-${PIPELINE_DIRECTORY}/asli_env/bin/activate}
+
+# Set dates and current year for iteration purposes
+export DATE="`date --utc +"%Y-%m-%d"`"
+export CURRENT_YEAR="`date --utc +"%Y"`"
 
 # ERA5 Downloading parameters
-export DATA_ARGS_ERA5="$(-s 2022 -n "${CURRENT_YEAR})"
+export DATA_ARGS_ERA5="-s 2022 -n 2024"
 
-# Output Filenames and Directories
