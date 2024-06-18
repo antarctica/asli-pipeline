@@ -10,7 +10,7 @@ PIPELINE_DIRECTORY=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null &
 # Date for indexing
 DATE=$(date --utc +"%Y-%m-%d")
 
-# Activative environment
+# Activate virtual environment
 source ${ASLI_VENV}
 
 # Create input and output directories, if they do not already exist
@@ -35,10 +35,8 @@ asli_calc $DATA_DIR/era5_mean_sea_level_pressure_monthly_*.nc -o $OUTPUT_DIR/out
 # probably move into sbatch to run on lotus - not strictly required but nice for reproducibility
 
 # Move output into s3 bucket, making sure /.s3cfg file is present
-s3cmd put $OUTPUT_DIR/output.csv s3://asli
+s3cmd put $OUTPUT_DIR/output.csv $S3_BUCKET
 
-# We can then move ERA5 data onto the object store as well OR
-# Check if this can be done from the CEDA archive
-
-# Clean up ERA5 data, not implementing until production
-# rm  ERA5/monthly/era5_*.nc
+# Clean up the data dir, but retain output
+# If I use $DATA_DIR here it will only remove /monthly
+rm -r $PIPELINE_DIRECTORY/data
