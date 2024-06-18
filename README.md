@@ -9,7 +9,10 @@ git clone git@github.com:antarctica/boost-eds-pipeline.git asli
 
 ## Creating an environment
 ```bash
-python -m venv aslienv
+# if you are working on JASMIN you will need to load in jaspy
+module load jaspy 
+
+python -m venv asli_env
 
 source aslienv/bin/activate
 ```
