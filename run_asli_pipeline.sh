@@ -4,16 +4,12 @@ set -e
 # Read in config file
 source ENVS
 
-# Location that pipeline is stored, referenced by most scripts
+# Location that pipeline is stored
 PIPELINE_DIRECTORY=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
-
-# Date for indexing
-DATE=$(date --utc +"%Y_%m_%d")
 
 # Activate virtual environment
 source ${ASLI_VENV}
 
-# Create input and output directories, if they do not already exist
 # Put all relevant directories in a list
 DIR_LIST=($DATA_DIR $OUTPUT_DIR)
 
@@ -25,7 +21,6 @@ do
 		echo "Created $DIR"
 	fi
 done
-
 
 # Fetch land sea mask, automatically writes in data directory
 # Everything is pre-set in asli, no arguments needed for our purpose

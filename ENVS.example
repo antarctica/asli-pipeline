@@ -1,5 +1,9 @@
 ##
-# text
+# Most of the variables below will not need changing
+# The asli package looks for /data/ERA5/monthly, so does not need changing
+# 
+# Note ASLI_VENV is set as asli_env, as per the setup instructions
+# Change this if you gave it a different name
 
 # Location that pipeline is stored, referenced by most scripts
 export PIPELINE_DIRECTORY=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
@@ -9,13 +13,14 @@ export DATA_DIR=${DATA_DIR:-${PIPELINE_DIRECTORY}/data/ERA5/monthly}
 export OUTPUT_DIR=${OUTPUT_DIR:-${PIPELINE_DIRECTORY}/output}
 
 # Setting S3 bucket, if using
+# The endpoint is set in your .s3cfg file
 export S3_BUCKET="s3://asli"
 
 # Specify environment so it does not need to be called prior to running
 export ASLI_VENV=${ASLI_VENV:-${PIPELINE_DIRECTORY}/asli_env/bin/activate}
 
 # Set dates and current year for iteration purposes
-export DATE="`date --utc +"%Y-%m-%d"`"
+export DATE="`date --utc +"%Y_%m_%d"`"
 export CURRENT_YEAR="`date --utc +"%Y"`"
 
 # ERA5 Downloading parameters
