@@ -14,13 +14,13 @@ module load jaspy
 
 python -m venv asli_env
 
-source aslienv/bin/activate
+source asli_env/bin/activate
 ```
 
 ### Packages and Virtual Environments on JASMIN
 If you are working on JASMIN, it is good to familiarise yourself with managing software environments on Jasmin:
-    * [Quick Start on software for JASMIN](https://help.jasmin.ac.uk/docs/software-on-jasmin/quickstart-software-envs/).
-    * [Python Virtual Environments for JASMIN](https://help.jasmin.ac.uk/docs/software-on-jasmin/python-virtual-environments/).
+    *[Quick Start on software for JASMIN](https://help.jasmin.ac.uk/docs/software-on-jasmin/quickstart-software-envs/).
+    *[Python Virtual Environments for JASMIN](https://help.jasmin.ac.uk/docs/software-on-jasmin/python-virtual-environments/).
 
 ## Download the `asli` package
 Install the `asli` package from Github using pip: `pip install git+https://github.com/davidwilby/amundsen-sea-low-index`, as per the instructions in the `amundsen-sea-low-index` [repository](https://github.com/davidwilby/amundsen-sea-low-index).
@@ -54,7 +54,18 @@ The results of this pipeline are displayed in an [application hosted on Datalabs
 Follow this [tutorial to see how Datalabs and the JASMIN Object Store interact](https://github.com/NERC-CEH/object_store_tutorial/tree/main).
 
 ## Running the pipeline manually
+Before running the pipeline, make sure you have followed the steps above:
+   1. Cloned the pipeline.
+   2. Set up your environment.
+   3. Installed `asli`.
+   4. Set configurations `ENVS.config` and symbolically linked to `ENVS`.
+   5. Set configurations for the Object Store in `.s3cfg`.
 
+You can now run the pipeline:
+```bash
+deactivate # Your environment is set in ENVS, so you do not need to call it
+bash run_asli_pipeline.sh
+```
 
 ## Automating the pipeline cron
 
