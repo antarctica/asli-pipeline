@@ -8,7 +8,7 @@ source ENVS
 PIPELINE_DIRECTORY=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
 # Date for indexing
-DATE=$(date --utc +"%Y-%m-%d")
+DATE=$(date --utc +"%Y_%m_%d")
 
 # Activate virtual environment
 source ${ASLI_VENV}
@@ -36,7 +36,7 @@ asli_data_era5 $DATA_ARGS_ERA5
 
 # Run calculation, specifying output location
 # output.csv will need to be renamed to sensible unique identifyer 
-asli_calc $DATA_DIR/era5_mean_sea_level_pressure_monthly_*.nc -o $OUTPUT_DIR/output.csv
+asli_calc $DATA_DIR/era5_mean_sea_level_pressure_monthly_*.nc -o $OUTPUT_DIR/asli_calculation_$DATE.csv
 # probably move into sbatch to run on lotus - not strictly required but nice for reproducibility
 
 # Move output into s3 bucket, making sure /.s3cfg file is present
