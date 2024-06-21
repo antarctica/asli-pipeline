@@ -1,0 +1,5 @@
+# Run on the first day of the month at 3am
+# 0 3 1 * * cd gws/nopw/j04/dit/users/thozwa/boost-eds-pipeline && bash run_asli_pipeline.sh; deactivate
+
+# On JASMIN, using crontamer, timeout set for 2 hours
+0 3 1 * * crontamer -t 2h 'cd gws/nopw/j04/dit/users/thozwa/boost-eds-pipeline && bash run_asli_pipeline.sh; deactivate'
