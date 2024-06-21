@@ -68,7 +68,7 @@ deactivate # Your environment is set in ENVS, so you do not need to call it
 bash run_asli_pipeline.sh
 ```
 
-## Automating the pipeline cron
+## Automating the pipeline with cron
 A cron example has been provided in the `cron.example` file.
 
 ```bash
