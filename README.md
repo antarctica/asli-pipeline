@@ -42,11 +42,16 @@ cp ENVS.example ENVS.myconfig
 ln -sf ENVS.myconfig ENVS
 # Edit ENVS.myconfig to customise parameters for the pipeline
 ```
+## Data Output
+The pipeline allows data output to the JASMIN Object Store, a local file system, or both - depending on where you are running this pipeline and which output file formats you would like to use.
 
 ### Data Output to JASMIN Object Store
 The pipeline uses `s3cmd` to  interact with S3 compatible Object Storage. If you configure your data to be written out to the JASMIN Object Store, you will need to configure `s3cmd` to access your object storage tenancy and bucket.
 
 You will need to generate an access key, and store it in a `~/.s3cfg` file. Full instructions on how to [generate an access key on JASMIN](https://help.jasmin.ac.uk/docs/short-term-project-storage/using-the-jasmin-object-store/#creating-an-access-key-and-secret) and an [s3cfg file](https://help.jasmin.ac.uk/docs/short-term-project-storage/using-the-jasmin-object-store/#using-s3cmd)  to use `s3cmd` are in the JASMIN documentation.
+
+### Data Output to local file system
+If you require data to be copied to a different location (for example to the BAS SAN, for archival into the Polar Data Centre) you can configure this destination in `ENVS`. This will then `rsync` your output to that location.
 
 ## Interaction with Datalabs
 The results of this pipeline are displayed in an [application hosted on Datalabs](https://ditbas-asliapp.datalabs.ceh.ac.uk/).
