@@ -33,14 +33,10 @@ export S3_BUCKET="s3://asli"
 # Setting rsync location, if using
 export RSYNC_LOCATION=""
 
-## Data querying parameters
-# ERA5 Downloading parameters
-export DATA_ARGS_ERA5="-s 2022 -n ${CURRENT_YEAR}"
-
-## No need to edit variable beyond this point
 # Set dates and current year for iteration purposes
 export DATE="`date --utc +"%Y_%m_%d"`"
 export CURRENT_YEAR="`date --utc +"%Y"`"
 
-
-
+## Data querying parameters
+# ERA5 Downloading parameters
+export DATA_ARGS_ERA5="-s 2022 -n ${CURRENT_YEAR}"
