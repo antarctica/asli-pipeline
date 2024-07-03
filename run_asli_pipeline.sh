@@ -23,7 +23,7 @@ do
 done
 
 # Fetch land sea mask, automatically writes in data directory
-# Everything is pre-set in asli, no arguments needed for our purpose
+# Everything is pre-set in asli functions, no arguments needed for our purpose
 asli_data_lsm
 
 # Downloading latest ERA5 data
@@ -34,8 +34,20 @@ asli_data_era5 $DATA_ARGS_ERA5
 asli_calc $DATA_DIR/era5_mean_sea_level_pressure_monthly_*.nc -o $OUTPUT_DIR/asli_calculation_$DATE.csv
 # probably move into sbatch to run on lotus - not strictly required but nice for reproducibility
 
-# Move output into s3 bucket, making sure /.s3cfg file is present
-s3cmd put $OUTPUT_DIR/output.csv $S3_BUCKET
+# Exports files to destination, either object storage of classic file system
+# This also determines the file export format
+case $FILE_DESTINATION in
+	${VALID_DESTINATION[0]})
+		s3cmd put $OUTPUT_DIR/output.csv $S3_BUCKET
+		;;
+	${VALID_DESTINATION[1]})
+		# Do file system placeholder
+		;;
+	*)
+	echo "ERROR: This is not a valid destination, choose from: ${VALID_DESTINATIONS[@]}"
+	exit 1
+	;;
+esac
 
 # Clean up the data dir, but retain output
 # If I use $DATA_DIR here it will only remove /monthly
