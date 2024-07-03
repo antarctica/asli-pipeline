@@ -4,9 +4,6 @@ set -e
 # Read in config file
 source ENVS
 
-# Location that pipeline is stored
-PIPELINE_DIRECTORY=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
-
 # Activate virtual environment
 source ${ASLI_VENV}
 
