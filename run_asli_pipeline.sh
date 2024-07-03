@@ -36,12 +36,14 @@ asli_calc $DATA_DIR/era5_mean_sea_level_pressure_monthly_*.nc -o $OUTPUT_DIR/asl
 
 # Exports files to destination, either object storage of classic file system
 # This also determines the file export format
-case $FILE_DESTINATION in
-	${VALID_DESTINATION[0]})
+case ${FILE_DESTINATION} in
+	OBJECT_STORAGE|BOTH)
 		s3cmd put $OUTPUT_DIR/output.csv $S3_BUCKET
-		;;
-	${VALID_DESTINATION[1]})
+		echo "Writing to Object Storage, bucket $S3_BUCKET."
+		;;&
+	FILE_SYSTEM|BOTH)
 		# Do file system placeholder
+		echo "Writing to file system, folder $RSYNC_LOCATION."
 		;;
 	*)
 	echo "ERROR: This is not a valid destination, choose from: ${VALID_DESTINATIONS[@]}"
