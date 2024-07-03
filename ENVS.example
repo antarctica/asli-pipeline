@@ -5,6 +5,8 @@
 # Note ASLI_VENV is set as asli_env, as per the setup instructions
 # Change this if you gave it a different name
 
+## Directories
+# Should not need editing, but you can do so if you wish
 # Location that pipeline is stored, referenced by most scripts
 export PIPELINE_DIRECTORY=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
@@ -12,17 +14,29 @@ export PIPELINE_DIRECTORY=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev
 export DATA_DIR=${DATA_DIR:-${PIPELINE_DIRECTORY}/data/ERA5/monthly}
 export OUTPUT_DIR=${OUTPUT_DIR:-${PIPELINE_DIRECTORY}/output}
 
+# Specify environment so it does not need to be called prior to running
+export ASLI_VENV=${ASLI_VENV:-${PIPELINE_DIRECTORY}/asli_env/bin/activate}
+
+## File Movement
+# Specify the destination of the files and export method
+# This will also determine file format (ie .nc or .zarr, .csv or .parquet)
+# Choose either OBJECT_STORAGE, FILE_SYSTEM, or BOTH
+export FILE_DESTINATION=BOTH
+
+# These are 
+export VALID_DESTINATIONS=(OBJECT_STORAGE, FILE_SYSTEM, BOTH)
+
 # Setting S3 bucket, if using
 # The endpoint is set in your .s3cfg file
 export S3_BUCKET="s3://asli"
 
-# Specify environment so it does not need to be called prior to running
-export ASLI_VENV=${ASLI_VENV:-${PIPELINE_DIRECTORY}/asli_env/bin/activate}
+# Setting rsync location, if using
+export RSYNC_LOCATION=""
 
 # Set dates and current year for iteration purposes
 export DATE="`date --utc +"%Y_%m_%d"`"
 export CURRENT_YEAR="`date --utc +"%Y"`"
 
+## Data querying parameters
 # ERA5 Downloading parameters
 export DATA_ARGS_ERA5="-s 2022 -n ${CURRENT_YEAR}"
-
