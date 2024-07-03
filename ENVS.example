@@ -21,10 +21,10 @@ export ASLI_VENV=${ASLI_VENV:-${PIPELINE_DIRECTORY}/asli_env/bin/activate}
 # Specify the destination of the files and export method
 # This will also determine file format (ie .nc or .zarr, .csv or .parquet)
 # Choose either OBJECT_STORAGE, FILE_SYSTEM, or both
-export FILE_DESTINATION = "OBJECT_STORAGE"
+export FILE_DESTINATION="OBJECT_STORAGE"
 
 # These are 
-export VALID_DESTINATIONS =(OBJECT_STORAGE, FILE_SYSTEM)
+export VALID_DESTINATIONS=(OBJECT_STORAGE, FILE_SYSTEM)
 
 # Setting S3 bucket, if using
 # The endpoint is set in your .s3cfg file
