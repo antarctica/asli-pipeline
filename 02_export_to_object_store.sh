@@ -4,7 +4,7 @@
 file_list=$(find $OUTPUT_DIR -maxdepth 2 -type f -name "*.nc" | sort)
 
 # Check if OUTPUT directory exists and that it contains NetCDF files
-if [ ! -d "OUTPUT" ] || [ ! -z "${file_list}" ]; then
+if [ ! -d $OUTPUT_DIR ] || [ ! -z "${file_list}" ]; then
     echo "Error: No .nc files found in OUTPUT directory or OUTPUT directory does not exist."
     exit 1
 fi
