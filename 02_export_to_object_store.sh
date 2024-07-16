@@ -1,18 +1,18 @@
 #!/bin/bash
 
-# Get file list
-file_list=$(find $OUTPUT_DIR -maxdepth 2 -type f -name "*.nc" | sort)
+# Move ERA5 monthly files to $OUTPUT_DIR
+scp $DATA_DIR/*.nc $OUTPUT_DIR
 
-# Check if OUTPUT directory exists and that it contains NetCDF files
-if [ ! -d $OUTPUT_DIR ] || [ ! -z "${file_list}" ]; then
-    echo "Error: No .nc files found in OUTPUT directory or OUTPUT directory does not exist."
+# Check if OUTPUT directory exists and that it contains files
+if [ ! -d $OUTPUT_DIR ]; then
+    echo "Error: OUTPUT directory does not exist."
     exit 1
 fi
 
 total_files=$(echo "$file_list" | wc -l)
 
 counter=0
-for file in $file_list; do
+for file in $OUTPUT_DIR/*; do
     ((counter++))
     percentage=$((counter * 100 / total_files))
 
@@ -23,7 +23,15 @@ for file in $file_list; do
     echo -ne ">] $percentage% \r"
 
     echo -e "Sending ${file}"
-    msm_os send -f ${file} -c ${S3_CREDENTIALS} -b ${S3_BUCKET}
+    if [[ $file == *.nc ]]
+    then
+        msm_os send -f ${file} -c ${S3_CREDENTIALS} -b ${S3_BUCKET_ZARR}
+        echo -e "\n Transfer to $S3_BUCKET_ZARR completed!"
+    else 
+        if [[ $file == *.csv ]]
+        then
+            s3cmd put ${file} $S3_BUCKET_CSV
+            echo -e "\n Transfer to $S3_BUCKET_CSV completed!"
+        fi
+    fi
 done
-
-echo -e "\nTransfer completed!"
