@@ -24,6 +24,6 @@ jasmin_s3 = s3fs.S3FileSystem(
 era5_dataset = xr.open_mfdataset(sys.argv[1], engine="netcdf4")
 
 # Set s3 store destination, sys.argv[2] is s3 bucket name
-# e.g. s3://era5zarr
+# e.g. s3://asli/zarr-files
 s3_store = s3fs.S3Map(sys.argv[2], s3=jasmin_s3)
 era5_dataset.to_zarr(store=s3_store, mode='w')

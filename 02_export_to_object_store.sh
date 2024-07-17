@@ -27,5 +27,5 @@ for file in $OUTPUT_DIR/*; do
 done
 
 # Now also transfer ERA5 to object store as zarr files
-python export_nc_as_zarr.py "$DATA_DIR/*.nc" "$S3_BUCKET/zarr-files"
+python 02a_export_nc_as_zarr.py "$DATA_DIR/*.nc" "$S3_BUCKET/zarr-files"
 echo -e "\n Transfer to $S3_BUCKET completed!"
