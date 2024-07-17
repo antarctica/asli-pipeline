@@ -97,9 +97,14 @@ This means compute, data storage and application hosting are all separated. Each
 ## Citation
 If you use this pipeline in your work, please cite this repository by using the 'Cite this repostory' button on the top right of this repository.
 
+## Acknowledgements
+This work used JASMIN, the UK’s collaborative data analysis environment (https://www.jasmin.ac.uk).
+
 ## References
 Brown, M. J., & Chevuturi, A. object_store_tutorial [Computer software]. https://github.com/NERC-CEH/object_store_tutorial
 
 Hosking, J. S., A. Orr, T. J. Bracegirdle, and J. Turner (2016), Future circulation changes off West Antarctica: Sensitivity of the Amundsen Sea Low to projected anthropogenic forcing, Geophys. Res. Lett., 43, 367–376, doi:10.1002/2015GL067143.
 
 Hosking, J. S., & Wilby, D. asli [Computer software]. https://github.com/scotthosking/amundsen-sea-low-index
+
+Lawrence, B. N. , Bennett, V. L., Churchill, J., Juckes, M., Kershaw, P., Pascoe, S., Pepler, S., Pritchard, M. and Stephens, A. (2013) Storing and manipulating environmental big data with JASMIN. In: IEEE Big Data, October 6-9, 2013, San Francisco.
