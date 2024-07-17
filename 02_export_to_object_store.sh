@@ -26,6 +26,10 @@ for file in $OUTPUT_DIR/*; do
     echo -e "\n ${file} transfer to $S3_BUCKET completed!"
 done
 
-# Now also transfer ERA5 to object store as zarr files
-python 02a_export_nc_as_zarr.py "$DATA_DIR/*.nc" "$S3_BUCKET/zarr-files"
+# Now also transfer ERA5 files to object store as zarr files
+# Land sea mask
+python 02a_export_nc_as_zarr.py "$PIPELINE_DIRECTORY/data/*.nc" "$S3_BUCKET/zarr-lsm"
+
+# MSL monthly data file
+python 02a_export_nc_as_zarr.py "$DATA_DIR/*.nc" "$S3_BUCKET/zarr-msl"
 echo -e "\n Transfer to $S3_BUCKET completed!"
