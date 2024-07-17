@@ -21,17 +21,17 @@ export ASLI_VENV=${ASLI_VENV:-${PIPELINE_DIRECTORY}/asli_env/bin/activate}
 # Specify the destination of the files and export method
 # This will also determine file format (ie .nc or .zarr, .csv or .parquet)
 # Choose either OBJECT_STORAGE, FILE_SYSTEM, or BOTH
-export FILE_DESTINATION=BOTH
+export FILE_DESTINATION=OBJECT_STORAGE
 
 # These are 
 export VALID_DESTINATIONS=(OBJECT_STORAGE, FILE_SYSTEM, BOTH)
 
 # Setting S3 bucket, if using
 # The endpoint is set in your .s3cfg file
-export S3_BUCKET="asli"
+export S3_BUCKET="s3://asli"
 
 # Setting rsync location, if using
-export RSYNC_LOCATION="/gws/nopw/j04/dit/users/thozwa/boost-eds-pipeline/rsync_test"
+export RSYNC_LOCATION=""
 
 # Set dates and current year for iteration purposes
 export DATE="`date --utc +"%Y_%m_%d"`"
@@ -40,3 +40,4 @@ export CURRENT_YEAR="`date --utc +"%Y"`"
 ## Data querying parameters
 # ERA5 Downloading parameters
 export DATA_ARGS_ERA5="-s 2022 -n ${CURRENT_YEAR}"
+export DATA_ARGS_ERA5_TEST="-s 2019 -n 2021"

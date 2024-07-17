@@ -22,10 +22,10 @@ for file in $OUTPUT_DIR/*; do
 
     # Simply puts files in object store
     # Credentials handled via .s3cfg
-    s3cmd put ${file} $S3_BUCKET_CSV
-    echo -e "\n Transfer to $S3_BUCKET_CSV completed!"
+    s3cmd put ${file} $S3_BUCKET
+    echo -e "\n ${file} transfer to $S3_BUCKET completed!"
 done
 
 # Now also transfer ERA5 to object store as zarr files
-python export_nc_as_zarr.py "$DATA_DIR/*.nc" "$S3_BUCKET_ZARR/zarr-files"
-echo -e "\n Transfer to $S3_BUCKET_ZARR completed!"
+python export_nc_as_zarr.py "$DATA_DIR/*.nc" "$S3_BUCKET/zarr-files"
+echo -e "\n Transfer to $S3_BUCKET completed!"
