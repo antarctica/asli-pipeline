@@ -1,5 +1,5 @@
 cff-version: 1.2.0
-title: boost-eds-pipeline
+title: asli-pipeline
 message: >-
   If you use this software, please cite it using the
   metadata from this file.
@@ -10,6 +10,11 @@ authors:
     email: thozwa@bas.ac.uk
     affiliation: British Antarctic Survey
     orcid: 'https://orcid.org/0009-0003-3742-3234'
+  - given-names: David
+    family-names: Wilby
+    email: dalby@bas.ac.uk
+    affiliation: British Antarctic Survey
+    orcid: 'https://orcid.org/0000-0002-6553-8739'
 repository-code: 'https://github.com/antarctica/boost-eds-pipeline'
 abstract: >-
   This repository contains a pipeline for operational execution of the Amundsen Sea Ice Low calculations, provided in the asli package.
