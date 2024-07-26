@@ -28,7 +28,7 @@ Install the `asli` package from Github using pip: `pip install git+https://githu
 ## Setting up Climate Data Store API
 The `asli` package will not be able to download ERA5 data without access to the [Copernicus Climate Data Store](https://cds.climate.copernicus.eu/cdsapp#!/home).
 
-Follow these instructions to set up CDS API access: [How to Use The CDS API](https://cds.climate.copernicus.eu/api-how-to).
+Follow these instructions to set up CDS API access: [How to Use The CDS API](https://cds-beta.climate.copernicus.eu/how-to-api).
 
 ```bash
 nano $HOME/.cdsapirc
