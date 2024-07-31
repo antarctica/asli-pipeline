@@ -34,9 +34,17 @@ export S3_BUCKET="s3://asli"
 export RSYNC_LOCATION=""
 
 # Set dates and current year for iteration purposes
-export DATE="`date --utc +"%Y_%m_%d"`"
+export CURRENT_DATE="`date --utc +"%Y_%m_%d"`"
 export CURRENT_YEAR="`date --utc +"%Y"`"
 
 ## Data querying parameters
 # ERA5 Downloading parameters
-export DATA_ARGS_ERA5="-s 2024 -n ${CURRENT_YEAR}"
+export START_YEAR=${CURRENT_YEAR}
+export END_YEAR=${CURRENT_YEAR}
+export DATA_ARGS_ERA5="-s ${START_YEAR} -n ${END_YEAR}"
+
+# FILE_IDENTIFYER will what the output filename is called
+# ie asli_calculation_$FILE_IDENTIFYER.csv
+# Depending on how you are organising your files, you might want this 
+# To be the CURRENT_YEAR, CURRENT_DATE or another unique ID
+export FILE_IDENTIFYER=${CURRENT_YEAR}
