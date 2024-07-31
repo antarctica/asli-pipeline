@@ -39,5 +39,4 @@ export CURRENT_YEAR="`date --utc +"%Y"`"
 
 ## Data querying parameters
 # ERA5 Downloading parameters
-export DATA_ARGS_ERA5="-s 2022 -n ${CURRENT_YEAR}"
-export DATA_ARGS_ERA5_TEST="-s 2019 -n 2021"
+export DATA_ARGS_ERA5="-s 2024 -n ${CURRENT_YEAR}"
