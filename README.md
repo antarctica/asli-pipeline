@@ -85,6 +85,8 @@ crontab -e
 ```
 For more information on using cron on JASMIN, see [Using Cron](https://help.jasmin.ac.uk/docs/workflow-management/using-cron/) in the JASMIN documentation, and the [crontamer](https://github.com/cedadev/crontamer) package. The purpose of `crontamer` is to stop multiple process instances starting. It also times out after x hours and emails on error.
 
+## A note on sbatch/SLURM
+
 ## Deployment Example
 The following describes an example deployment setup for this pipeline. This was done under the BOOST-EDS project.
 
@@ -92,7 +94,10 @@ We are using a [JASMIN](https://jasmin.ac.uk/) group workspace (GWS) to run a da
 
 ![](img/asli-technical-overview.png)
 
-This means compute, data storage and application hosting are all separated. Each component could also be deployed on different infrastructure, for example BAS HPCs or commercial cloud providers.
+This means compute, data storage and application hosting are all separated. 
+
+### Portability
+Each component listed above could also be deployed on different suitables infrastructures, for example BAS HPCs or commercial cloud providers.
 
 ## Interaction with Datalabs
 The results of this pipeline are displayed in an [application hosted on Datalabs](https://ditbas-asliapp.datalabs.ceh.ac.uk/).
