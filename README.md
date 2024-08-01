@@ -25,6 +25,12 @@ If you are working on JASMIN, it is good to familiarise yourself with managing s
 ## Download the `asli` package
 Install the `asli` package into your environment `asli_env` from Github using pip: `pip install git+https://github.com/davidwilby/amundsen-sea-low-index`, as per the instructions in the `amundsen-sea-low-index` [repository](https://github.com/davidwilby/amundsen-sea-low-index).
 
+## Install all requirements
+To install all dependencies, run:
+```bash
+pip install -r requirements.txt
+```
+
 ## Setting up Climate Data Store API
 The `asli` package will not be able to download ERA5 data without access to the [Copernicus Climate Data Store](https://cds.climate.copernicus.eu/cdsapp#!/home).
 
