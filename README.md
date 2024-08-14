@@ -88,6 +88,8 @@ crontab -e
 For more information on using cron on JASMIN, see [Using Cron](https://help.jasmin.ac.uk/docs/workflow-management/using-cron/) in the JASMIN documentation, and the [crontamer](https://github.com/cedadev/crontamer) package. The purpose of `crontamer` is to stop multiple process instances starting. It also times out after x hours and emails on error.
 
 ## A note on sbatch/SLURM
+If you need to submit this pipeline to SLURM (for example [on JASMIN](https://help.jasmin.ac.uk/docs/batch-computing/how-to-submit-a-job/)), you will need to add `sbatch` headers to the executable script. In our case it is recommended `sbatch` headers are added to `run_asli_pipeline.sh`
+
 
 ## Deployment Example
 The following describes an example deployment setup for this pipeline. This was done under the BOOST-EDS project.
