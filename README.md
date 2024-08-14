@@ -1,6 +1,8 @@
 # asli-pipeline
 This repository contains a pipeline for operational execution of the Amundsen Sea Ice Low calculations, provided in the `asli` package. The functions in the `asli` package are described in detail in the [package repository](https://github.com/davidwilby/amundsen-sea-low-index) `amundsen-sea-low-index` (Hosking & Wilby 2024), and in _Hosking et al. (2016)_.
 
+This pipeline was built using the [icenet-pipeline](https://github.com/icenet-ai/icenet-pipeline) as a template (Byrne et al. 2024).  
+
 ## Get the repository
 Clone this repository into a directory on your computer or HPC.
 ```
@@ -85,6 +87,16 @@ crontab -e
 ```
 For more information on using cron on JASMIN, see [Using Cron](https://help.jasmin.ac.uk/docs/workflow-management/using-cron/) in the JASMIN documentation, and the [crontamer](https://github.com/cedadev/crontamer) package. The purpose of `crontamer` is to stop multiple process instances starting. It also times out after x hours and emails on error.
 
+## A note on sbatch/SLURM
+If you need to submit this pipeline to SLURM (for example [on JASMIN](https://help.jasmin.ac.uk/docs/batch-computing/how-to-submit-a-job/)), you will need to provide `sbatch` headers to the SLURM queue. We have not included sbatch headers in our script.
+
+However, you can include `sbatch` headers when you call the executable script: 
+
+```bash
+# Submitting a job to the short-serial partition on JASMIN
+sbatch -p short-serial -t 03:00 -o job01.out -e job01.err run_asli_pipeline.sh`
+```
+
 ## Deployment Example
 The following describes an example deployment setup for this pipeline. This was done under the BOOST-EDS project.
 
@@ -92,7 +104,10 @@ We are using a [JASMIN](https://jasmin.ac.uk/) group workspace (GWS) to run a da
 
 ![](img/asli-technical-overview.png)
 
-This means compute, data storage and application hosting are all separated. Each component could also be deployed on different infrastructure, for example BAS HPCs or commercial cloud providers.
+This means compute, data storage and application hosting are all separated. 
+
+### Portability
+Each component listed above could also be deployed on different suitables infrastructures, for example BAS HPCs or commercial cloud providers.
 
 ## Interaction with Datalabs
 The results of this pipeline are displayed in an [application hosted on Datalabs](https://ditbas-asliapp.datalabs.ceh.ac.uk/).
@@ -108,8 +123,11 @@ This work used JASMIN, the UK’s collaborative data analysis environment (https
 ## References
 Brown, M. J., & Chevuturi, A. object_store_tutorial [Computer software]. https://github.com/NERC-CEH/object_store_tutorial
 
+Byrne, J., Ubald, B. N., & Chan, R. icenet-pipeline (Version v0.2.9) [Computer software]. https://github.com/icenet-ai/icenet-pipeline
+
 Hosking, J. S., A. Orr, T. J. Bracegirdle, and J. Turner (2016), Future circulation changes off West Antarctica: Sensitivity of the Amundsen Sea Low to projected anthropogenic forcing, Geophys. Res. Lett., 43, 367–376, doi:10.1002/2015GL067143.
 
 Hosking, J. S., & Wilby, D. asli [Computer software]. https://github.com/scotthosking/amundsen-sea-low-index
 
 Lawrence, B. N. , Bennett, V. L., Churchill, J., Juckes, M., Kershaw, P., Pascoe, S., Pepler, S., Pritchard, M. and Stephens, A. (2013) Storing and manipulating environmental big data with JASMIN. In: IEEE Big Data, October 6-9, 2013, San Francisco.
+
