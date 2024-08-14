@@ -4,7 +4,7 @@ This repository contains a pipeline for operational execution of the Amundsen Se
 ## Get the repository
 Clone this repository into a directory on your computer or HPC.
 ```
-git clone git@github.com:antarctica/boost-eds-pipeline.git asli
+git clone git@github.com:antarctica/boost-eds-pipeline.git asli-pipeline
 ```
 
 ## Creating an environment
