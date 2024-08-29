@@ -4,7 +4,8 @@
 # Everything is pre-set in asli functions, no arguments needed for our purpose
 asli_data_lsm
 
-# Downloading latest ERA5 data
+# Downloading latest ERA5 data, provide information to the user
+echo "Requesting with the following arguments: $DATA_ARGS_ERA5".
 asli_data_era5 $DATA_ARGS_ERA5
 
 # Run calculation, specifying output location
