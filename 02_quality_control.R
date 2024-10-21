@@ -10,7 +10,8 @@ if (length(args)!=2) {
   
   current_output <- readr::read_csv(
     args[1],
-    skip = 29
+    skip = 29,
+    show_col_types = FALSE
   )
   
   # Check if we are checking a file on s3, or local 
@@ -50,9 +51,9 @@ if (length(args)!=2) {
     existing_file <- s3_bucket$Body |> 
       rawToChar() |> 
       readr::read_csv(
-        skip = 29
+        skip = 29,
+        show_col_types = FALSE
       )
-    
   } else {
     existing_file <- readr::read_csv(
       args[2],
@@ -61,9 +62,15 @@ if (length(args)!=2) {
   }
   
   # Use butterfly to check there are no changes to past data
-  butterfly::loupe(
+  qa_outcome <- butterfly::loupe(
     current_output,
     existing_file,
     datetime_variable = "time"
   )
+
+  if (!isTRUE(qa_outcome)) {
+    stop(
+      "Previous values do not match. Stopping data transfer."
+    )
+  }
 }
