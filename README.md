@@ -26,6 +26,7 @@ To install all dependencies, inlcuding the `asli` package, run:
 pip install -r requirements.txt
 
 # Please inspect install.R if installing on Linux distributions
+# In addition, if not using S3 it is recommended to skip "paws" installation
 R -f install.R
 ```
 

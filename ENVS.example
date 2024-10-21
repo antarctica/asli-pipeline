@@ -39,9 +39,9 @@ export CURRENT_YEAR="`date --utc +"%Y"`"
 
 ## Data querying parameters
 # ERA5 Downloading parameters
-export START_YEAR=2024
+export START_YEAR=1960
 export END_YEAR=${CURRENT_YEAR}
-export DATA_ARGS_ERA5="-s ${CURRENT_YEAR} -n ${CURRENT_YEAR}"
+export DATA_ARGS_ERA5="-s ${START_YEAR} -n ${CURRENT_YEAR}"
 
 # FILE_IDENTIFIER will what the output filename is called
 # ie asli_calculation_$FILE_IDENTIFIER.csv
