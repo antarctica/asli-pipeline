@@ -39,12 +39,12 @@ export CURRENT_YEAR="`date --utc +"%Y"`"
 
 ## Data querying parameters
 # ERA5 Downloading parameters
-export START_YEAR=${CURRENT_YEAR}
+export START_YEAR=2024
 export END_YEAR=${CURRENT_YEAR}
-export DATA_ARGS_ERA5="-s ${START_YEAR} -n ${END_YEAR}"
+export DATA_ARGS_ERA5="-s ${CURRENT_YEAR} -n ${CURRENT_YEAR}"
 
-# FILE_IDENTIFYER will what the output filename is called
-# ie asli_calculation_$FILE_IDENTIFYER.csv
+# FILE_IDENTIFIER will what the output filename is called
+# ie asli_calculation_$FILE_IDENTIFIER.csv
 # Depending on how you are organising your files, you might want this 
 # To be the CURRENT_YEAR, CURRENT_DATE or another unique ID
-export FILE_IDENTIFYER=${CURRENT_YEAR}
+export FILE_IDENTIFIER=${CURRENT_YEAR}

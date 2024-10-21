@@ -22,27 +22,25 @@ done
 # Run calculations, writes an output file in $OUTPUT_DIR
 bash 01_run_asli_calculations.sh
 
-
-
 # Exports files to destination, either object storage of classic file system
 # This also determines the file export format
 case ${FILE_DESTINATION} in
 	OBJECT_STORAGE)
 		# Run quality control checks, checks whether new data matches previous data
 		# Provide old and new file
-		Rscript -e 02_quality_control.R $OUTPUT_DIR/asli_calculation_$FILE_IDENTIFYER.csv $S3_BUCKET/asli_calculation_$FILE_IDENTIFYER.csv
+		Rscript 02_quality_control.R "$OUTPUT_DIR/asli_calculation_$FILE_IDENTIFIER.csv" "$S3_BUCKET/asli_calculation_$FILE_IDENTIFIER.csv"
 
 		bash 03_export_to_object_store.sh
 		;;
 	# Putting in a fallthrough for BOTH
 	# ie when BOTH is matched, it also runs FILE_SYSTEM
 	BOTH)
-		Rscript -e 02_quality_control.R $OUTPUT_DIR/asli_calculation_$FILE_IDENTIFYER.csv $S3_BUCKET/asli_calculation_$FILE_IDENTIFYER.csv
+		Rscript 02_quality_control.R "$OUTPUT_DIR/asli_calculation_$FILE_IDENTIFIER.csv" "$S3_BUCKET/asli_calculation_$FILE_IDENTIFIER.csv"
 
 		bash 03_export_to_object_store.sh
 		;&
 	FILE_SYSTEM)
-		Rscript -e 02_quality_control.R $OUTPUT_DIR/asli_calculation_$FILE_IDENTIFYER.csv $RSYNC_LOCATION/asli_calculation_$FILE_IDENTIFYER.csv
+		Rscript 02_quality_control.R "$OUTPUT_DIR/asli_calculation_$FILE_IDENTIFIER.csv" "$S3_BUCKET/asli_calculation_$FILE_IDENTIFIER.csv"
 
 		bash 04_export_to_file_system.sh
 		;;
