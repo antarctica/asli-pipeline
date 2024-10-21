@@ -40,7 +40,7 @@ case ${FILE_DESTINATION} in
 		bash 03_export_to_object_store.sh
 		;&
 	FILE_SYSTEM)
-		Rscript 02_quality_control.R "$OUTPUT_DIR/asli_calculation_$FILE_IDENTIFIER.csv" "$S3_BUCKET/asli_calculation_$FILE_IDENTIFIER.csv"
+		Rscript 02_quality_control.R "$OUTPUT_DIR/asli_calculation_$FILE_IDENTIFIER.csv" "$RSYNC_LOCATION/asli_calculation_$FILE_IDENTIFIER.csv"
 
 		bash 04_export_to_file_system.sh
 		;;
