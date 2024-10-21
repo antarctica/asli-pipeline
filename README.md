@@ -23,6 +23,9 @@ source asli_env/bin/activate
 To install all dependencies, inlcuding the `asli` package, run:
 ```bash
 pip install -r requirements.txt
+
+# Please inspect install.R if installing on Linux
+R -f install.R
 ```
 
 ### Packages and Virtual Environments on JASMIN
