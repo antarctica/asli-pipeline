@@ -1,5 +1,5 @@
 #!/usr/bin/env Rscript
-
+# Usage: Rscript 02_quality_control.R <current-file-path> <existing-file-path>
 # Obtain passed arguments
 args = commandArgs(trailingOnly=TRUE)
 
@@ -9,7 +9,7 @@ if (length(args)!=2) {
 } else {
 
   current_output <- readr::read_csv(
-    args[1]
+    args[1],
     skip = 29
   )
 
