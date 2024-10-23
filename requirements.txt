@@ -12,7 +12,7 @@ botocore==1.34.131
 branca==0.7.2
 cads-api-client==1.1.0
 Cartopy==0.23.0
-cdsapi==0.7.0
+cdsapi==0.7.3
 certifi==2024.7.4
 cftime==1.6.4
 charset-normalizer==3.3.2
