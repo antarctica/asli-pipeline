@@ -73,5 +73,9 @@ if (length(args)!=2) {
     stop(
       "Previous values do not match. Stopping data transfer."
     )
+  } else {
+    message(
+      "Verification passed: no changes to previous data."
+    )
   }
 }

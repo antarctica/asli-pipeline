@@ -1,11 +1,11 @@
 #!/usr/bin/env Rscript
-# Usage: Rscript xx_quality_control.R <current-file-path> $SD_FROM_MEAN $ACTCENPRES_BOUNDS_MIN $ACTCENPRES_BOUNDS_MAX $MEDIAN_ABSOLUTE_DEVIATIONS 
+# Usage: Rscript 02_quality_control.R <current-file-path> $SD_FROM_MEAN $ACTCENPRES_BOUNDS_MIN $ACTCENPRES_BOUNDS_MAX $MEDIAN_ABSOLUTE_DEVIATIONS 
 # Obtain passed arguments
 args = commandArgs(trailingOnly=TRUE)
 
 if (length(args)!=5) {
   stop(
-    "Please provide all arguments. Inspect xx_quality_checks.R for usage instructions.", call.=FALSE
+    "Please provide all arguments. Inspect src/R/02_quality_checks.R for usage instructions.", call.=FALSE
   )
 } else {
   # Reading in the current file, skipping lines to exclude metadata
