@@ -57,7 +57,8 @@ if (length(args)!=2) {
   } else {
     existing_file <- readr::read_csv(
       args[2],
-      skip = 29
+      skip = 29,
+      show_col_types = FALSE
     )
   }
   

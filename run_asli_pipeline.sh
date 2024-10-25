@@ -22,27 +22,31 @@ done
 # Run calculations, writes an output file in $OUTPUT_DIR
 bash 01_run_asli_calculations.sh
 
+# Script with carries out quality control checks on the data, can be configured in ENVS
+# Failure of checks will stop execution
+Rscript src/R/02_quality_checks.R "$OUTPUT_DIR/asli_calculation_$FILE_IDENTIFIER.csv" $SD_FROM_MEAN $ACTCENPRES_BOUNDS_MIN $ACTCENPRES_BOUNDS_MAX $MEDIAN_ABSOLUTE_DEVIATIONS 
+
 # Exports files to destination, either object storage of classic file system
 # This also determines the file export format
 case ${FILE_DESTINATION} in
 	OBJECT_STORAGE)
-		# Run quality control checks, checks whether new data matches previous data
+		# Run checks on whether new data matches previous data
 		# Provide old and new file
-		Rscript 02_quality_control.R "$OUTPUT_DIR/asli_calculation_$FILE_IDENTIFIER.csv" "$S3_BUCKET/asli_calculation_$FILE_IDENTIFIER.csv"
+		Rscript src/R/03_verify_no_past_changes.R "$OUTPUT_DIR/asli_calculation_$FILE_IDENTIFIER.csv" "$S3_BUCKET/asli_calculation_$FILE_IDENTIFIER.csv"
 
-		bash 03_export_to_object_store.sh
+		bash 04_export_to_object_store.sh
 		;;
 	# Putting in a fallthrough for BOTH
 	# ie when BOTH is matched, it also runs FILE_SYSTEM
 	BOTH)
-		Rscript 02_quality_control.R "$OUTPUT_DIR/asli_calculation_$FILE_IDENTIFIER.csv" "$S3_BUCKET/asli_calculation_$FILE_IDENTIFIER.csv"
+		Rscript src/R/03_verify_no_past_changes.R "$OUTPUT_DIR/asli_calculation_$FILE_IDENTIFIER.csv" "$S3_BUCKET/asli_calculation_$FILE_IDENTIFIER.csv"
 
-		bash 03_export_to_object_store.sh
+		bash 04_export_to_object_store.sh
 		;&
 	FILE_SYSTEM)
-		Rscript 02_quality_control.R "$OUTPUT_DIR/asli_calculation_$FILE_IDENTIFIER.csv" "$RSYNC_LOCATION/asli_calculation_$FILE_IDENTIFIER.csv"
+		Rscript 03_verify_no_past_changes.R "$OUTPUT_DIR/asli_calculation_$FILE_IDENTIFIER.csv" "$RSYNC_LOCATION/asli_calculation_$FILE_IDENTIFIER.csv"
 
-		bash 04_export_to_file_system.sh
+		bash src/R/04_export_to_file_system.sh
 		;;
 	*)
 	echo "ERROR: $FILE_DESTINATION is not a valid destination, choose from: ${VALID_DESTINATIONS[@]}"
