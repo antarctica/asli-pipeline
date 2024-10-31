@@ -8,11 +8,6 @@
       }
     ]
   },
-  "Python": {
-    "Version": "3.12.3",
-    "Type": "virtualenv",
-    "Name": "aslienv"
-  },
   "Packages": {
     "MASS": {
       "Package": "MASS",
