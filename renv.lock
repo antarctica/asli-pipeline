@@ -4,14 +4,14 @@
     "Repositories": [
       {
         "Name": "P3M",
-        "URL": "https://packagemanager.posit.co/cran/__linux__/rhel9/latest"
+        "URL": "https://packagemanager.posit.co/cran/__linux__/centos7/latest"
       }
     ]
   },
   "Packages": {
     "MASS": {
       "Package": "MASS",
-      "Version": "7.3-61",
+      "Version": "7.3-59",
       "Source": "Repository",
       "Repository": "CRAN",
       "Requirements": [
