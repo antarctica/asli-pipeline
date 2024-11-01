@@ -16,7 +16,8 @@ module load jaspy
 module load jasr
 
 # Or, on the BAS HPC:
-module load mamba/r-*
+module load mamba/r-* # any version above 4.*
+module load python/3.12.3/gcc-11.4.1-n3s7
 
 python -m venv asli_env
 

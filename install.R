@@ -1,6 +1,9 @@
 #!/usr/bin/env Rscript
 # Usage R -f install.R
-# not currently working with opensuse and sle
+# Tested on ubuntu, centos and rocky
+#
+# This will not work with opensuse and sle,
+# naming inconsistencies across distros is hard
 
 # This is not an R project, so need to manually "activate" renv
 source("renv/activate.R")
