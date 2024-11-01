@@ -1,4 +1,6 @@
 #!/usr/bin/env Rscript
+# Usage R -f install.R
+
 # This is not an R project, so need to manually "activate" renv
 source("renv/activate.R")
 
@@ -13,7 +15,7 @@ os <- data.frame(
 # Match with pak's ppm_platforms
 os_table <- merge(
   os,
-  pak::ppm_platforms()
+  pkgcache::ppm_platforms()
 )
 
 if (os_table$os == "linux") {
