@@ -11,9 +11,12 @@ git clone git@github.com:antarctica/boost-eds-pipeline.git asli-pipeline
 
 ## Creating an environment
 ```bash
-# if you are working on JASMIN you will need to load in jaspy and jasr
+# If you are working on JASMIN you will need to load in jaspy and jasr
 module load jaspy 
 module load jasr
+
+# Or, on the BAS HPC:
+module load mamba/r-*
 
 python -m venv asli_env
 
@@ -26,7 +29,10 @@ To install all dependencies, inlcuding the `asli` package, run:
 pip install -r requirements.txt
 
 # For R, we are using {renv} to manage dependencies
-Rscript -e "renv::restore()"
+# install.R uses renv::restore, in combination with
+# automatic distro detection to install R & system 
+# dependencies
+R -f install.R
 ```
 
 ### Packages and Virtual Environments on JASMIN

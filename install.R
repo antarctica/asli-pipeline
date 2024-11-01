@@ -1,21 +1,34 @@
-# Selecting p3m.dev is an optional step for linux distros
-# It will speed up installation and prevents the risk of installation 
-# failing on external C libraries
+#!/usr/bin/env Rscript
+# This is not an R project, so need to manually "activate" renv
+source("renv/activate.R")
 
-# This is because CRAN only provides source packages for linux
-# and not binary
-# see: https://r-in-production.org/packages.html#installing-a-package-on-linux
+# Moving on to installing r and system dependencies with renv.lock
+# Have R obtain the current platform distro and release
+# pak & pkgcache **should** be installed with renv
+os <- data.frame(
+  distribution = pkgcache::current_r_platform_data()$distribution,
+  release = pkgcache::current_r_platform_data()$release
+)
 
-# For Ubuntu 24.04
-options(repos = c(CRAN = "https://p3m.dev/cran/__linux__/noble/latest"))
+# Match with pak's ppm_platforms
+os_table <- merge(
+  os,
+  pak::ppm_platforms()
+)
 
-# For Rocky 9
-# options(repos = c(CRAN = "https://p3m.dev/cran/__linux__/rhel9/latest"))
+if (os_table$os == "linux") {
+  p3m_url <- paste0(
+    "https://p3m.dev/cran/__linux__/",
+  os_table$binary_url,
+"/latest"
+)
+} else{
+  p3m_url <- "https://p3m.dev/cran/latest"
+}
 
-install.packages("pak")
-pak::pak("thomaszwagerman/butterfly")
-pak::pak("readr")
-pak::pak("paws")
-pak::pak("ini")
-pak::pak("assertr")
-pak::pak("dplyr")
+renv::lockfile_modify(repos = c(
+  P3M = p3m_url
+)) |> 
+renv::lockfile_write()
+
+renv::restore()
