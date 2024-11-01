@@ -1,5 +1,6 @@
 #!/usr/bin/env Rscript
 # Usage R -f install.R
+# not currently working with opensuse and sle
 
 # This is not an R project, so need to manually "activate" renv
 source("renv/activate.R")
@@ -14,10 +15,19 @@ os <- data.frame(
   release = pkgcache::current_r_platform_data()$release
 )
 
+os$release <- round(as.numeric((os$release)))
+
+# Some wrangling to make matching more reliable across distros
+ppm_platforms <- pkgcache::ppm_platforms()
+
+# Take the word "linux" out of distribution names
+ppm_platforms$distribution <- gsub("linux", "", ppm_platforms$distribution)
+ppm_platforms$release <- round(as.numeric((ppm_platforms$release)))
+
 # Match with pak's ppm_platforms
 os_table <- merge(
   os,
-  pkgcache::ppm_platforms()
+  ppm_platforms
 )
 
 if (os_table$os == "linux") {
