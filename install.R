@@ -4,6 +4,8 @@
 # This is not an R project, so need to manually "activate" renv
 source("renv/activate.R")
 
+install.packages("pkgcache")
+
 # Moving on to installing r and system dependencies with renv.lock
 # Have R obtain the current platform distro and release
 # pak & pkgcache **should** be installed with renv
