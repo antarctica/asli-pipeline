@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 # Check if OUTPUT directory exists and that it contains files
 if [ ! -d $OUTPUT_DIR ]; then
@@ -28,8 +29,8 @@ done
 
 # Now also transfer ERA5 files to object store as zarr files
 # Land sea mask
-python 02a_export_nc_as_zarr.py "$PIPELINE_DIRECTORY/data/*.nc" "$S3_BUCKET/zarr-lsm"
+python src/04a_export_nc_as_zarr.py "$PIPELINE_DIRECTORY/data/*.nc" "$S3_BUCKET/zarr-lsm"
 
 # MSL monthly data file
-python 02a_export_nc_as_zarr.py "$DATA_DIR/*.nc" "$S3_BUCKET/zarr-msl"
+python src/04a_export_nc_as_zarr.py "$DATA_DIR/*.nc" "$S3_BUCKET/zarr-msl"
 echo -e "\n Transfer to $S3_BUCKET completed!"
