@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 # Rsync the contents of $OUTPUT_DIR to $RSYNC_LOCATION
 # In this case there is no need to convert file formats

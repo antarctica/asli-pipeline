@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 # Fetch land sea mask, automatically writes in data directory
 # Everything is pre-set in asli functions, no arguments needed for our purpose
