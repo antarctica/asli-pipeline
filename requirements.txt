@@ -1,4 +1,4 @@
-asli[tests,docs,dev,s3] @ git+https://github.com/davidwilby/amundsen-sea-low-index
+asli[s3] @ git+https://github.com/davidwilby/amundsen-sea-low-index
 cdsapi==0.7.3
 configparser==7.1.0
 pathlib==1.0.1
