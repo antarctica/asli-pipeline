@@ -17,6 +17,9 @@ export OUTPUT_DIR=${OUTPUT_DIR:-${PIPELINE_DIRECTORY}/output}
 # Specify environment so it does not need to be called prior to running
 export ASLI_VENV=${ASLI_VENV:-${PIPELINE_DIRECTORY}/asli_env/bin/activate}
 
+## Validation Checks
+export FIRST_RUN=TRUE
+
 ## File Movement
 # Specify the destination of the files and export method
 # This will also determine file format (ie .nc or .zarr, .csv or .parquet)

@@ -32,20 +32,24 @@ case ${FILE_DESTINATION} in
 	OBJECT_STORAGE)
 		# Run checks on whether new data matches previous data
 		# Provide old and new file
-		Rscript src/03_verify_no_past_changes.R "$OUTPUT_DIR/asli_calculation_$FILE_IDENTIFIER.csv" "$S3_BUCKET/asli_calculation_$FILE_IDENTIFIER.csv"
+		if [! $FIRST_RUN]; then
+			Rscript src/03_verify_no_past_changes.R "$OUTPUT_DIR/asli_calculation_$FILE_IDENTIFIER.csv" "$S3_BUCKET/asli_calculation_$FILE_IDENTIFIER.csv"
+		fi
 
 		bash src/04_export_to_object_store.sh
 		;;
 	# Putting in a fallthrough for BOTH
 	# ie when BOTH is matched, it also runs FILE_SYSTEM
 	BOTH)
-		Rscript src/03_verify_no_past_changes.R "$OUTPUT_DIR/asli_calculation_$FILE_IDENTIFIER.csv" "$S3_BUCKET/asli_calculation_$FILE_IDENTIFIER.csv"
-
+		if [! $FIRST_RUN]; then
+			Rscript src/03_verify_no_past_changes.R "$OUTPUT_DIR/asli_calculation_$FILE_IDENTIFIER.csv" "$S3_BUCKET/asli_calculation_$FILE_IDENTIFIER.csv"
+		fi
 		bash src/04_export_to_object_store.sh
 		;&
 	FILE_SYSTEM)
-		Rscript src/03_verify_no_past_changes.R "$OUTPUT_DIR/asli_calculation_$FILE_IDENTIFIER.csv" "$RSYNC_LOCATION/asli_calculation_$FILE_IDENTIFIER.csv"
-
+		if [! $FIRST_RUN]; then
+			Rscript src/03_verify_no_past_changes.R "$OUTPUT_DIR/asli_calculation_$FILE_IDENTIFIER.csv" "$S3_BUCKET/asli_calculation_$FILE_IDENTIFIER.csv"
+		fi
 		bash src/04_export_to_file_system.sh
 		;;
 	*)
