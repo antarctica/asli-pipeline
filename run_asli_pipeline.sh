@@ -32,6 +32,7 @@ case ${FILE_DESTINATION} in
 	OBJECT_STORAGE)
 		# Run checks on whether new data matches previous data
 		# Provide old and new file
+		# Only run if it is not the first run, ie there is a file to compare against
 		if [[ "${FIRST_RUN}" != true ]]; then
 			Rscript src/03_verify_no_past_changes.R "$OUTPUT_DIR/asli_calculation_$FILE_IDENTIFIER.csv" "$S3_BUCKET/asli_calculation_$FILE_IDENTIFIER.csv"
 		fi

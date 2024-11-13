@@ -18,6 +18,9 @@ export OUTPUT_DIR=${OUTPUT_DIR:-${PIPELINE_DIRECTORY}/output}
 export ASLI_VENV=${ASLI_VENV:-${PIPELINE_DIRECTORY}/asli_env/bin/activate}
 
 ## Validation Checks
+# Whether this is the first run against a file destination
+# Setting this to true will prevent the pipeline from running verification
+# against a file that does not yet exist
 export FIRST_RUN=true
 
 ## File Movement
