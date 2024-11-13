@@ -18,7 +18,7 @@ export OUTPUT_DIR=${OUTPUT_DIR:-${PIPELINE_DIRECTORY}/output}
 export ASLI_VENV=${ASLI_VENV:-${PIPELINE_DIRECTORY}/asli_env/bin/activate}
 
 ## Validation Checks
-export FIRST_RUN=TRUE
+export FIRST_RUN=true
 
 ## File Movement
 # Specify the destination of the files and export method
