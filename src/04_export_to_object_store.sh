@@ -11,7 +11,7 @@ total_files=$(echo "$file_list" | wc -l)
 
 counter=0
 for file in $OUTPUT_DIR/*; do
-    ((counter++))
+    ((counter+1))
     percentage=$((counter * 100 / total_files))
 
     echo -ne "Progress: ["

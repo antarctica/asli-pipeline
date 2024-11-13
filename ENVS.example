@@ -17,6 +17,12 @@ export OUTPUT_DIR=${OUTPUT_DIR:-${PIPELINE_DIRECTORY}/output}
 # Specify environment so it does not need to be called prior to running
 export ASLI_VENV=${ASLI_VENV:-${PIPELINE_DIRECTORY}/asli_env/bin/activate}
 
+## Validation Checks
+# Whether this is the first run against a file destination
+# Setting this to true will prevent the pipeline from running verification
+# against a file that does not yet exist
+export FIRST_RUN=true
+
 ## File Movement
 # Specify the destination of the files and export method
 # This will also determine file format (ie .nc or .zarr, .csv or .parquet)
