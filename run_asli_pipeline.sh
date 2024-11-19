@@ -49,9 +49,9 @@ case ${FILE_DESTINATION} in
 		;&
 	FILE_SYSTEM)
 		if [[ "${FIRST_RUN}" != true ]]; then
-			Rscript src/03_verify_no_past_changes.R "$OUTPUT_DIR/asli_calculation_$FILE_IDENTIFIER.csv" "$S3_BUCKET/asli_calculation_$FILE_IDENTIFIER.csv"
+			Rscript src/03_verify_no_past_changes.R "$OUTPUT_DIR/asli_calculation_$FILE_IDENTIFIER.csv" "$RSYNC_LOCATION/asli_calculation_$FILE_IDENTIFIER.csv"
 		fi
-		bash src/04_export_to_file_system.sh
+		bash src/05_export_to_file_system.sh
 		;;
 	*)
 	echo "ERROR: $FILE_DESTINATION is not a valid destination, choose from: ${VALID_DESTINATIONS[@]}"

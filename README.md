@@ -97,7 +97,7 @@ crontab -e
 0 3 1 * * cd $HOME/boost-eds-pipeline && bash run_asli_pipeline.sh; deactivate
 
 # OR on JASMIN we are using crontamer:
-0 3 1 * * crontamer -t 2h -e youremail@address.ac.uk 'cd gws/nopw/j04/dit/users/thozwa/boost-eds-pipeline && bash run_asli_pipeline.sh; deactivate'
+0 3 1 * * crontamer -t 2h -e youremail@address.ac.uk 'cd gws/nopw/j04/dit/users/thozwa/asli-pipeline && bash run_asli_pipeline.sh; deactivate'
 ```
 For more information on using cron on JASMIN, see [Using Cron](https://help.jasmin.ac.uk/docs/workflow-management/using-cron/) in the JASMIN documentation, and the [crontamer](https://github.com/cedadev/crontamer) package. The purpose of `crontamer` is to stop multiple process instances starting. It also times out after x hours and emails on error.
 
