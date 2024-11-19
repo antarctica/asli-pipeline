@@ -111,6 +111,13 @@ However, you can include `sbatch` headers when you call the executable script:
 sbatch -p short-serial -t 03:00 -o job01.out -e job01.err run_asli_pipeline.sh`
 ```
 
+On the BAS HPC, remember to set the working directory. For example:
+
+```bash
+# On the rocky machine, otherwise 'rocky' becomes 'short'
+sbatch -p rocky -A rocky -t 00:30 -D /users/USERNAME/asli-pipeline -o /data/hpcdata/users/USERNAME/out/asli_run.%i.%N.out -e /data/hpcdata/users/USERNAME/out/asli_run.%i.%N.err run_asli_pipeline.sh
+```
+
 ## Deployment Example
 The following describes an example deployment setup for this pipeline. This was done under the BOOST-EDS project.
 
