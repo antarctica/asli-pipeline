@@ -141,7 +141,7 @@ If you use this pipeline in your work, please cite this repository by using the 
 ## Acknowledgements
 This work used JASMIN, the UK’s collaborative data analysis environment (https://www.jasmin.ac.uk).
 
-The `asli` packaged uses data from Hersbach, H. et al., (2018) was downloaded from the Copernicus Climate Change Service (2023). This software is used to download the data, but does not use the data itself. Therefore these sources are cited below without a specific access date.
+The `asli` package uses data from Hersbach, H. et al., (2018) downloaded from the Copernicus Climate Change Service (2023). This software is used to download the data. Therefore these sources are cited below without a specific access date.
 
 ## References
 Brown, M. J., & Chevuturi, A. object_store_tutorial [Computer software]. https://github.com/NERC-CEH/object_store_tutorial
