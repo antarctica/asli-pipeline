@@ -127,7 +127,7 @@ On the BAS HPC, remember to set the working directory. For example:
 sbatch -p rocky -A rocky -t 00:30 -D /users/USERNAME/asli-pipeline -o /data/hpcdata/users/USERNAME/out/asli_run.%i.%N.out -e /data/hpcdata/users/USERNAME/out/asli_run.%i.%N.err run_asli_pipeline.sh
 ```
 
-## Combining cron and SLURm
+## Combining cron and SLURM
 Below is a cron example of the entire pipeline running once a month on the BAS HPC:
 
 ```bash
