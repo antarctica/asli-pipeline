@@ -84,6 +84,11 @@ Before running the pipeline, make sure you have followed the steps above:
 You can now run the pipeline:
 ```bash
 deactivate # Your environment is set in ENVS, so you do not need to call it
+
+# Download the era5 data first
+bash src/00_download_era5.sh
+
+# Then run the whole pipeline
 bash run_asli_pipeline.sh
 ```
 
@@ -94,7 +99,7 @@ A cron example has been provided in the `cron.example` file.
 crontab -e
 
 # Then edit the file, for example to run once a month:
-0 3 1 * * cd $HOME/boost-eds-pipeline && bash run_asli_pipeline.sh; deactivate
+0 3 1 * * cd $HOME/asli-pipeline && bash run_asli_pipeline.sh; deactivate
 
 # OR on JASMIN we are using crontamer:
 0 3 1 * * crontamer -t 2h -e youremail@address.ac.uk 'cd gws/nopw/j04/dit/users/thozwa/asli-pipeline && bash run_asli_pipeline.sh; deactivate'
@@ -107,6 +112,10 @@ If you need to submit this pipeline to SLURM (for example [on JASMIN](https://he
 However, you can include `sbatch` headers when you call the executable script: 
 
 ```bash
+# Downloading era5 data first, due to SLURM timeouts and CDS api response time
+# it is recommended to not send this script as a job to SLURM
+bash src/00_download_era5.sh
+
 # Submitting a job to the short-serial partition on JASMIN
 sbatch -p short-serial -t 03:00 -o job01.out -e job01.err run_asli_pipeline.sh`
 ```
@@ -116,6 +125,13 @@ On the BAS HPC, remember to set the working directory. For example:
 ```bash
 # On the rocky machine, otherwise 'rocky' becomes 'short'
 sbatch -p rocky -A rocky -t 00:30 -D /users/USERNAME/asli-pipeline -o /data/hpcdata/users/USERNAME/out/asli_run.%i.%N.out -e /data/hpcdata/users/USERNAME/out/asli_run.%i.%N.err run_asli_pipeline.sh
+```
+
+## Combining cron and SLURm
+Below is a cron example of the entire pipeline running once a month on the BAS HPC:
+
+```bash
+0 3 1 * * cd $HOME/asli-pipeline && bash src/00_download_era5.sh && sbatch -p rocky -A rocky -t 00:30 -D /users/USERNAME/asli-pipeline -o /data/hpcdata/users/USERNAME/out/asli_run.%i.%N.out -e /data/hpcdata/users/USERNAME/out/asli_run.%i.%N.err run_asli_pipeline.sh; deactivate
 ```
 
 ## Deployment Example
