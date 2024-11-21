@@ -7,17 +7,11 @@ source ENVS
 # Activate virtual environment
 source ${ASLI_VENV}
 
-# Put all relevant directories in a list
-DIR_LIST=($DATA_DIR $OUTPUT_DIR)
-
-# Create them if they do not exist
-for dir in ${DIR_LIST[@]};
-do
-	if [ ! -d $dir ]; then
-  		mkdir -p $dir
-		echo "Created $dir"
-	fi
-done
+# Data should already have been fetched with 00_download_era5.sh
+if [ ! -d $DATA_DIR ]; then
+	echo "There is no data directory. Do you need to run src/00_download_era5.sh first?"
+	exit 1
+fi
 
 # Run calculations, writes an output file in $OUTPUT_DIR
 bash src/01_run_asli_calculations.sh
