@@ -102,7 +102,7 @@ crontab -e
 0 3 1 * * cd $HOME/asli-pipeline; src/00_download_era5.sh && run_asli_pipeline.sh; deactivate
 
 # OR on JASMIN we are using crontamer:
-0 3 1 * * crontamer -t 2h -e youremail@address.ac.uk 'cd gws/nopw/j04/dit/users/thozwa/asli-pipeline && bash run_asli_pipeline.sh; deactivate'
+0 3 1 * * crontamer -t 2h -e youremail@address.ac.uk 'cd gws/nopw/j04/dit/users/USERNAME/asli-pipeline; src/00_download_era5 && run_asli_pipeline.sh; deactivate'
 
 # On the BAS HPC, you will likely need to load the software modules first as well:
 0 3 1 * * source/etc/profile.d/modules.sh; module load mamba/r-4.3; cd $HOME/asli-pipeline; src/00_download_era5.sh && run_asli_pipeline.sh; deactivate
