@@ -137,7 +137,7 @@ Below is a cron example of the entire pipeline running once a month on the BAS H
 0 3 1 * * source /etc/profile.d/modules.sh; module load mamba/r-4.3; cd $HOME/asli-pipeline; src/00_download_era5.sh && ./run_asli_pipeline.sh; deactivate
 ```
 
-When running the calculations on the entire dataset, this can take up a bit of memory. Ideally we send the processing to SLURM, however this is not possible with the downloading process, as it may take the CDS API too long to respond. Therefore we set up a crontab, to run locally, and a scrontab, to run on SLURM.
+When running the calculations on the entire dataset, this can take up a bit of memory. Ideally we send the processing to SLURM, however this is not possible with the downloading process, as it may take the CDS API too long to respond. Therefore we set up a crontab TO **only download the data**, running locally, and a scrontab, to send the **processing** to SLURM.
 
 Calling only the downloading script, on the first of the month at 1am:
 
@@ -145,7 +145,7 @@ Calling only the downloading script, on the first of the month at 1am:
 crontab -e
 0 1 1 * * source /etc/profile.d/modules.sh; module load mamba/r-4.3; cd /users/thozwa/asli-pipeline; src/00_download_era5.sh
 ```
-Sending the processing pipeline to slurm on the first of the month at 3am:
+Sending the processing pipeline to SLURM on the first of the month at 5am:
 
 ```bash
 scrontab -e
@@ -157,7 +157,7 @@ scrontab -e
 #SCRON --output=/data/hpcdata/users/USERNAME/out/asli_run.%i.%N.out
 #SCRON --error=/data/hpcdata/users/USERNAME/out/asli_run.%i.%N.err
 #SCRON --chdir=/users/USERNAME/asli-pipeline
-52 15 * * * source /etc/profile.d/modules.sh; module load mamba/r-4.3; ./run_asli_pipeline.sh
+0 5 1 * * source /etc/profile.d/modules.sh; module load mamba/r-4.3; ./run_asli_pipeline.sh
 ```
 A SLURM cron example has been provided in the `scron.example` file.
 
