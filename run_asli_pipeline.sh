@@ -8,6 +8,10 @@ source ENVS
 source ${ASLI_VENV}
 
 # Data should already have been fetched with 00_download_era5.sh
+if [ ! -d $DATA_DIR ]; then
+	echo "There is no data directory. Do you need to run src/00_download_era5.sh first?"
+	exit 1
+fi
 
 # Run calculations, writes an output file in $OUTPUT_DIR
 bash src/01_run_asli_calculations.sh
