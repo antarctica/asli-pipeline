@@ -6,7 +6,7 @@ This pipeline was built using the [icenet-pipeline](https://github.com/icenet-ai
 ## Get the repository
 Clone this repository into a directory on your computer or HPC.
 ```
-git clone git@github.com:antarctica/boost-eds-pipeline.git asli-pipeline
+git clone git@github.com:antarctica/asli-pipeline.git asli-pipeline
 ```
 
 ## Creating an environment
