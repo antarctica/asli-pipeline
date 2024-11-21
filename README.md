@@ -159,6 +159,7 @@ scrontab -e
 #SCRON --chdir=/users/USERNAME/asli-pipeline
 52 15 * * * source /etc/profile.d/modules.sh; module load mamba/r-4.3; ./run_asli_pipeline.sh
 ```
+A SLURM cron example has been provided in the `scron.example` file.
 
 Combining crontab and scrontab to perform the entire pipeline once a month, in the most computationally-friendly way possible.
 
