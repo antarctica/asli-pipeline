@@ -19,7 +19,7 @@ export ASLI_VENV=${ASLI_VENV:-${PIPELINE_DIRECTORY}/asli_env/bin/activate}
 
 ## Performance
 # Number of parallel jobs to run asli_cal withs
-NJOBS_CALC=1
+export NUM_CORES=20
 
 ## Validation Checks
 # Whether this is the first run against a file destination
@@ -31,17 +31,17 @@ export FIRST_RUN=true
 # Specify the destination of the files and export method
 # This will also determine file format (ie .nc or .zarr, .csv or .parquet)
 # Choose either OBJECT_STORAGE, FILE_SYSTEM, or BOTH
-export FILE_DESTINATION=OBJECT_STORAGE
+export FILE_DESTINATION=FILE_SYSTEM
 
 # These are 
 export VALID_DESTINATIONS=(OBJECT_STORAGE, FILE_SYSTEM, BOTH)
 
 # Setting S3 bucket, if using
 # The endpoint is set in your .s3cfg file
-export S3_BUCKET="s3://asli"
+export S3_BUCKET=""
 
 # Setting rsync location, if using
-export RSYNC_LOCATION=""
+export RSYNC_LOCATION="/users/thozwa/test_destination"
 
 # Set dates and current year for iteration purposes
 export CURRENT_DATE="`date --utc +"%Y_%m_%d"`"
@@ -49,7 +49,7 @@ export CURRENT_YEAR="`date --utc +"%Y"`"
 
 ## Data querying parameters
 # ERA5 Downloading parameters
-export START_YEAR=2024
+export START_YEAR=1959
 export END_YEAR=${CURRENT_YEAR}
 export DATA_ARGS_ERA5="-s ${START_YEAR} -n ${CURRENT_YEAR}"
 
