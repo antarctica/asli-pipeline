@@ -95,6 +95,9 @@ bash run_asli_pipeline.sh
 ## Automating the pipeline with cron
 A cron example has been provided in the `cron.example` file.
 
+First, make `run_asli_pipeline.sh` executable with `chmod +x run_asli_pipeline.sh`. Also remember to do this after every pull `run_asli_pipeline.sh` has changes.
+
+
 ```bash
 crontab -e
 
@@ -127,14 +130,14 @@ On the BAS HPC, remember to set the working directory. For example:
 
 ```bash
 # On the rocky machine, otherwise 'rocky' becomes 'short'
-sbatch -p rocky -A rocky -t 00:30 -D /users/USERNAME/asli-pipeline -o /data/hpcdata/users/USERNAME/out/asli_run.%i.%N.out -e /data/hpcdata/users/USERNAME/out/asli_run.%i.%N.err ./run_asli_pipeline.sh
+sbatch -p rocky -A rocky -t 00:30 -D /users/USERNAME/asli-pipeline -o /data/hpcdata/users/USERNAME/out/asli_run.%j.%N.out -e /data/hpcdata/users/USERNAME/out/asli_run.%j.%N.err run_asli_pipeline.sh
 ```
 
 ## Managing crontab and scrontab
 Below is a cron example of the entire pipeline running once a month on the BAS HPC:
 
 ```bash
-0 3 1 * * source /etc/profile.d/modules.sh; module load mamba/r-4.3; cd $HOME/asli-pipeline; src/00_download_era5.sh && ./run_asli_pipeline.sh; deactivate
+0 3 1 * * source /etc/profile.d/modules.sh; module load mamba/r-4.3; cd $HOME/asli-pipeline; src/00_download_era5.sh && run_asli_pipeline.sh; deactivate
 ```
 
 When running the calculations on the entire dataset, this can take up a bit of memory. Ideally we send the processing to SLURM, however this is not possible with the downloading process, as it may take the CDS API too long to respond.
@@ -155,11 +158,11 @@ scrontab -e
 # Then edit the script as follows:
 #SCRON --partition=rocky
 #SCRON --account=rocky
-#SCRON --time=00:30
-#SCRON --output=/data/hpcdata/users/USERNAME/out/asli_run.%i.%N.out
-#SCRON --error=/data/hpcdata/users/USERNAME/out/asli_run.%i.%N.err
+#SCRON --time=00:45:00
+#SCRON --output=/data/hpcdata/users/USERNAME/out/asli_run.%j.%N.out
+#SCRON --error=/data/hpcdata/users/USERNAME/out/asli_run.%j.%N.err
 #SCRON --chdir=/users/USERNAME/asli-pipeline
-0 5 1 * * source /etc/profile.d/modules.sh; module load mamba/r-4.3; ./run_asli_pipeline.sh
+0 5 1 * * source /etc/profile.d/modules.sh && module load mamba/r-4.3 && run_asli_pipeline.sh
 ```
 A SLURM cron example has been provided in the `scron.example` file.
 
