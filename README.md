@@ -155,11 +155,11 @@ scrontab -e
 # Then edit the script as follows:
 #SCRON --partition=rocky
 #SCRON --account=rocky
-#SCRON --time=00:30
-#SCRON --output=/data/hpcdata/users/USERNAME/out/asli_run.%i.%N.out
-#SCRON --error=/data/hpcdata/users/USERNAME/out/asli_run.%i.%N.err
+#SCRON --time=00:45:00
+#SCRON --output=/data/hpcdata/users/USERNAME/out/asli_run.%j.%N.out
+#SCRON --error=/data/hpcdata/users/USERNAME/out/asli_run.%j.%N.err
 #SCRON --chdir=/users/USERNAME/asli-pipeline
-0 5 1 * * source /etc/profile.d/modules.sh; module load mamba/r-4.3; ./run_asli_pipeline.sh
+0 5 1 * * source /etc/profile.d/modules.sh && module load mamba/r-4.3 && run_asli_pipeline.sh
 ```
 A SLURM cron example has been provided in the `scron.example` file.
 
