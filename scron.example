@@ -4,4 +4,6 @@
 #SCRON --output=/data/hpcdata/users/USERNAME/out/asli_run.%j.%N.out
 #SCRON --error=/data/hpcdata/users/USERNAME/out/asli_run.%j.%N.err
 #SCRON --chdir=/users/USERNAME/asli-pipeline
+#SCRON --cpus-per-task=20
+#SCRON --mem=20gb
 0 3 1 * * source /etc/profile.d/modules.sh && module load mamba/r-4.3 && run_asli_pipeline.sh
