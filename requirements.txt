@@ -1,5 +1,5 @@
 asli[s3] @ git+https://github.com/davidwilby/amundsen-sea-low-index
-cdsapi==0.7.3
+cdsapi==0.7.5
 configparser==7.1.0
 pathlib==1.0.1
 s3fs==2024.6.1
