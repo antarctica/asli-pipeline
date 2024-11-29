@@ -57,7 +57,7 @@ export DATA_ARGS_ERA5="-s ${START_YEAR} -n ${CURRENT_YEAR}"
 # ie asli_calculation_$FILE_IDENTIFIER.csv
 # Depending on how you are organising your files, you might want this 
 # To be the CURRENT_YEAR, CURRENT_DATE or another unique ID
-export FILE_IDENTIFIER=${CURRENT_YEAR}
+export FILE_IDENTIFIER="${START_YEAR}_to_${CURRENT_YEAR}"
 
 ## Quality control parameters
 # These values are used to sense-check asli calculation outputs
