@@ -20,6 +20,10 @@ export ASLI_VENV=${ASLI_VENV:-${PIPELINE_DIRECTORY}/asli_env/bin/activate}
 # Get the asli version
 export ASLI_VERSION=$(pip freeze | grep asli)
 
+## Provenance
+# Generate an ROCrate?
+export EXPORT_ROCRATE=true
+
 ## Performance
 # Number of parallel jobs to run asli_cal withs
 export NUM_CORES=20
