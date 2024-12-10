@@ -20,17 +20,20 @@ with open('renv.lock') as f:
 data_input = crate.add_dataset("data/", "data", properties={
     "name":"ERA5 Data",
     "description":"Folder containing ERA5 land sea mask (era5_lsm.nc) and ERA5/monthly/era5_mean_sea_level_pressure_monthly* files.",
-    "type":"File",
+    "type":"FormalParameter",
+    "valueRequired":True,
     "encodingFormat":"application/netcdf"
 })
 
 pipeline_configuration = crate.add_file("ENVS", properties={
     "name":"Pipeline Configuration File",
-    "type":"File"
+    "type":"FormalParameter",
+    "valueRequired":True,
 })
 
 data_output = crate.add_dataset("output/", "output", properties={
     "name": "ASL Calculations",
+    "type": "FormalParameter",
     "encodingFormat": "text/csv",
     "datePublished": Literal(datetime.now().isoformat)
 })
@@ -42,10 +45,12 @@ pipeline_scripts = crate.add_directory("src/", "src", properties={
 })
 
 pipeline =  crate.add_file("run_asli_pipeline.sh", properties={
-    "name":"asli-pipeline",
+    "name":"ASLI Pipeline",
+    "description":"Pipeline using asli python package to calculate ASL Indices",
     "type":["File", "SoftwareSourceCode", "ComputationalWorkflow"],
     "url":"https://github.com/antarctica/asli-pipeline"
 })
+
 
 # Programming Languages
 python_version_formatted = str(sys.version_info[0]) + str(sys.version_info[1]) + str(sys.version_info[2])
