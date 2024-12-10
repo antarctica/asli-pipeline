@@ -54,7 +54,7 @@ case ${FILE_DESTINATION} in
 esac
 
 if [[ "${EXPORT_ROCRATE}" == true ]]; then
-	python src/06_generate_rocrate.py "$ASLI_VERSION"
+	python src/06_generate_rocrate.py "$BASH_VERSION" "$ASLI_VERSION"
 fi
 
 # Clean up the data dir, but retain output

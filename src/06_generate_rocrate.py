@@ -62,7 +62,7 @@ python_pl = crate.add(Entity(crate, "Python", properties={
     "version":platform.python_version()
 }))
 
-r_pl = crate.add(Entity(crate, "R", properties={
+r_pl = crate.add(Entity(crate, "r", properties={
     "@type": "ProgrammingLanguage",
     "url": ["https://cran.r-project.org/src/base/R-4/R-" + renv_lock["R"]["Version"] + ".tar.gz"],
     "version": renv_lock["R"]["Version"]
@@ -72,16 +72,15 @@ r_pl = crate.add(Entity(crate, "R", properties={
 bash_pl = crate.add(Entity(crate, "bash", properties={
     "@id":"#bash",
     "@type": "ProgrammingLanguage",
-    "url":"",
-    "version":""
+    "version":sys.argv[1]
 }))
 
-# External Software Packages
+# External Software Packages directly related to this project
 asli_package = crate.add(SoftwareApplication(crate, "asli_package", properties={
     "name": "asli",
     "type": ["File", "SoftwareSourceCode"],
     "url":"https://github.com/davidwilby/amundsen-sea-low-index",
-    "version": sys.argv[1]
+    "version": sys.argv[2]
 }))
 
 butterfly_package = crate.add(SoftwareApplication(crate, "butterfly_package", properties={
@@ -96,19 +95,25 @@ david_id = "https://orcid.org/0000-0002-6553-8739"
 scott_id = "https://orcid.org/0000-0002-3646-3504"
 thomas_id = "https://orcid.org/0009-0003-3742-3234"
 
+bas_org = crate.add(Entity(crate, "https://ror.org/01rhff309", properties={
+    "@type":"Organisation",
+    "name":"British Antarctic Survey",
+    "url":"https://ror.org/01rhff309"
+}))
+
 david = crate.add(Person(crate, david_id, properties={
     "name": "David Wilby",
-    "affiliation": "British Antarctic Survey"
+    "affiliation": bas_org
 }))
 
 scott = crate.add(Person(crate, scott_id, properties={
     "name": "Scott Hosking",
-    "affiliation": "British Antarctic Survey"
+    "affiliation": bas_org
 }))
 
 thomas = crate.add(Person(crate, thomas_id, properties={
     "name": "Thomas Zwagerman",
-    "affiliation": "British Antarctic Survey"
+    "affiliation": bas_org
 }))
 
 # Defining relationships between entities
