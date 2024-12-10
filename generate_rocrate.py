@@ -3,13 +3,23 @@ from rocrate.model.person import Person
 from rocrate.model.softwareapplication import SoftwareApplication
 from rocrate.model.entity import Entity
 
+import sys
+import platform
+import json 
+
 from datetime import datetime
 from rdflib import *
 
+# Initialise ROCrate
 crate = ROCrate()
 
-data_input = crate.add_dataset("data/", properties={
+# Read in renv.lock for software version information
+with open('renv.lock') as f:
+    renv_lock = json.load(f)
+
+data_input = crate.add_dataset("data/", "data", properties={
     "name":"ERA5 Data",
+    "description":"Folder containing ERA5 land sea mask (era5_lsm.nc) and ERA5/monthly/era5_mean_sea_level_pressure_monthly* files.",
     "type":"File",
     "encodingFormat":"application/netcdf"
 })
@@ -19,20 +29,13 @@ pipeline_configuration = crate.add_file("ENVS", properties={
     "type":"File"
 })
 
-data_output = crate.add_dataset("output/", properties={
+data_output = crate.add_dataset("output/", "output", properties={
     "name": "ASL Calculations",
     "encodingFormat": "text/csv",
     "datePublished": Literal(datetime.now().isoformat)
 })
 
-# python_package = crate.add_file("https://github.com/davidwilby/amundsen-sea-low-index", properties ={
-#     "name": "amundsen-sea-low-index",
-#     "type": ["File", "SoftwareSourceCode"],
-#     "programming_language" : {"@id" : "https://www.python.org/downloads/release/python-380/"},
-#     "url":"https://github.com/davidwilby/amundsen-sea-low-index"
-# })
-
-pipeline_scripts = crate.add_directory("src/", properties={
+pipeline_scripts = crate.add_directory("src/", "src", properties={
     "name":"pipeline scripts",
     "type":["File", "SoftwareSourceCode"],
     "url":"https://github.com/antarctica/asli-pipeline"
@@ -45,21 +48,23 @@ pipeline =  crate.add_file("run_asli_pipeline.sh", properties={
 })
 
 # Programming Languages
-python_pl = crate.add(Entity(crate, properties={
+python_version_formatted = str(sys.version_info[0]) + str(sys.version_info[1]) + str(sys.version_info[2])
+
+python_pl = crate.add(Entity(crate, "Python", properties={
     "@id": "#python",
     "@type": "ProgrammingLanguage",
-    "url":"https://www.python.org/downloads/release/python-380/",
-    "version":""
+    "url":["https://www.python.org/release/python-" + python_version_formatted + "/"],
+    "version":platform.python_version()
 }))
 
-r_pl = crate.add(Entity(crate, properties={
-    "@id":"#R",
+r_pl = crate.add(Entity(crate, "R", properties={
     "@type": "ProgrammingLanguage",
-    "url": "",
-    "version":""
+    "url": ["https://cran.r-project.org/src/base/R-4/R-" + renv_lock["R"]["Version"] + ".tar.gz"],
+    "version": renv_lock["R"]["Version"]
+
 }))
 
-bash_pl = crate.add(Entity(crate, properties={
+bash_pl = crate.add(Entity(crate, "bash", properties={
     "@id":"#bash",
     "@type": "ProgrammingLanguage",
     "url":"",
@@ -67,22 +72,24 @@ bash_pl = crate.add(Entity(crate, properties={
 }))
 
 # External Software Packages
-asli_package = crate.add(SoftwareApplication(crate, properties={
+asli_package = crate.add(SoftwareApplication(crate, "asli_package", properties={
     "name": "asli",
     "type": ["File", "SoftwareSourceCode"],
-    "url":"https://github.com/davidwilby/amundsen-sea-low-index"
+    "url":"https://github.com/davidwilby/amundsen-sea-low-index",
+    "version": sys.argv[1]
 }))
 
-butterfly_package = crate.add(SoftwareApplication(crate, properties={
+butterfly_package = crate.add(SoftwareApplication(crate, "butterfly_package", properties={
     "name":"butterfly",
     "type": ["File", "SoftwareSourceCode"],
-    "url":"https://github.com/antarctica/butterfly"
+    "url":"https://github.com/antarctica/butterfly",
+    "version":renv_lock["Packages"]["butterfly"]["Version"]
 }))
 
 # Authors
-david_id = ""
-scott_id = ""
-thomas_id = ""
+david_id = "https://orcid.org/0000-0002-6553-8739"
+scott_id = "https://orcid.org/0000-0002-3646-3504"
+thomas_id = "https://orcid.org/0009-0003-3742-3234"
 
 david = crate.add(Person(crate, david_id, properties={
     "name": "David Wilby",
@@ -99,21 +106,21 @@ thomas = crate.add(Person(crate, thomas_id, properties={
     "affiliation": "British Antarctic Survey"
 }))
 
-# Defining relationships
+# Defining relationships between entities
 # Assigning authors
 data_output["author"] = scott
 pipeline["author"] = thomas
 pipeline_scripts["author"] = thomas
 asli_package["author"] = [david, thomas]
+butterfly_package["author"] = thomas
 
 # Assigning programming languages
-pipeline_scripts["programming_language"] = [python_pl, bash_pl]
+pipeline_scripts["programming_language"] = [python_pl, bash_pl, r_pl]
 asli_package["programming_language"] = python_pl
 butterfly_package["programming_language"] = r_pl
 
 # Define pipeline inputs and outputs
-pipeline["input"] = [data_input, pipeline_configuration, asli_package]
+pipeline["input"] = [data_input, pipeline_configuration, asli_package, butterfly_package, pipeline_scripts]
 pipeline["output"] = data_output
-
 
 crate.write("asli_crate")
