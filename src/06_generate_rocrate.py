@@ -19,7 +19,7 @@ with open('renv.lock') as f:
 
 data_input = crate.add_dataset("data/", "data", properties={
     "name":"ERA5 Data",
-    "description":"Folder containing ERA5 land sea mask (era5_lsm.nc) and ERA5/monthly/era5_mean_sea_level_pressure_monthly* files.",
+    "description":"Folder containing ERA5 land sea mask (era5_lsm.nc) and ERA5/monthly/era5_mean_sea_level_pressure_monthly_*.nc files.",
     "type":"FormalParameter",
     "valueRequired":True,
     "encodingFormat":"application/netcdf"
@@ -51,6 +51,15 @@ pipeline =  crate.add_file("run_asli_pipeline.sh", properties={
     "url":"https://github.com/antarctica/asli-pipeline"
 })
 
+output_action = crate.add(Entity(crate, "ASLI_Calculation", properties={
+    "@type":"CreateAction",
+    "name":"Running ASLI Calculations on ERA5 data",
+    "description":"Pipeline executing asli python package functionality using the era5 land sea mask (era5_lsm.nc) and mean sea level pressure data (data/ERA5/monthly/era5_mean_sea_level_pressure_*.nc)",
+    "endTime":Literal(datetime.now().isoformat),
+    "instrument":[pipeline, pipeline_scripts],
+    "object":data_input,
+    "result":data_output
+}))
 
 # Programming Languages
 python_version_formatted = str(sys.version_info[0]) + str(sys.version_info[1]) + str(sys.version_info[2])
