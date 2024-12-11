@@ -1,5 +1,4 @@
 import xarray as xr
-import zarr
 import s3fs
 import sys
 import configparser
