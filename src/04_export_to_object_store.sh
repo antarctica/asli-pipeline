@@ -9,8 +9,15 @@ fi
 
 total_files=$(echo "$file_list" | wc -l)
 
+if [$USE_FEATHER != true]
+    export export_dir=$OUTPUT_DIR
+else
+    python write_feather.py $OUTPUT_DIR $FILE_IDENTIFIER
+    export export_dir="${OUTPUT_DIR}/feather/"
+fi
+
 counter=0
-for file in $OUTPUT_DIR/*; do
+for file in "${export_dir}/*"; do
     ((counter+1))
     percentage=$((counter * 100 / total_files))
 
