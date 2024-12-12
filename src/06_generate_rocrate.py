@@ -51,6 +51,16 @@ pipeline =  crate.add_file("run_asli_pipeline.sh", properties={
     "url":"https://github.com/antarctica/asli-pipeline"
 })
 
+download_era5_action = crate.add(Entity(crate, "Download ERA5 data", properties={
+    "@type":"CreateAction",
+    "name":"Downloading required ERA5 data",
+    "description":"Script downloading the era5 land sea mask (era5_lsm.nc) and mean sea level pressure data (data/ERA5/monthly/era5_mean_sea_level_pressure_*.nc), referencing ENVS to obtain query parameters.",
+    "endTime":Literal(datetime.now().isoformat),
+    "instrument":[pipeline_scripts, pipeline_configuration],
+    "object":"https://cds.climate.copernicus.eu/api",
+    "result":data_input
+}))
+
 output_action = crate.add(Entity(crate, "ASLI_Calculation", properties={
     "@type":"CreateAction",
     "name":"Running ASLI Calculations on ERA5 data",
@@ -132,6 +142,8 @@ pipeline["author"] = thomas
 pipeline_scripts["author"] = thomas
 asli_package["author"] = [david, thomas]
 butterfly_package["author"] = thomas
+output_action["agent"] = thomas
+download_era5_action["agent"] = thomas
 
 # Assigning programming languages
 pipeline_scripts["programming_language"] = [python_pl, bash_pl, r_pl]
