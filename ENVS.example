@@ -17,6 +17,8 @@ export OUTPUT_DIR=${OUTPUT_DIR:-${PIPELINE_DIRECTORY}/output}
 # Specify environment so it does not need to be called prior to running
 export ASLI_VENV=${ASLI_VENV:-${PIPELINE_DIRECTORY}/asli_env/bin/activate}
 
+export USE_FEATHER=true
+
 ## Performance
 # Number of parallel jobs to run asli_cal withs
 export NUM_CORES=20
