@@ -12,7 +12,7 @@ total_files=$(echo "$file_list" | wc -l)
 if [$USE_FEATHER != true]; then
     export export_dir=$OUTPUT_DIR
 else
-    python write_feather.py $OUTPUT_DIR $FILE_IDENTIFIER
+    python src/write_feather.py $OUTPUT_DIR $FILE_IDENTIFIER
     export export_dir="${OUTPUT_DIR}/feather/"
 fi
 
