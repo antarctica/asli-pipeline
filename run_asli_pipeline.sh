@@ -53,6 +53,10 @@ case ${FILE_DESTINATION} in
 	;;
 esac
 
+if [[ "${EXPORT_ROCRATE}" == true ]]; then
+	python src/06_generate_rocrate.py "$BASH_VERSION" "$ASLI_VERSION"
+fi
+
 # Clean up the data dir, but retain output
 # If I use $DATA_DIR here it will only remove /monthly
 rm -r $PIPELINE_DIRECTORY/data
