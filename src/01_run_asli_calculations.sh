@@ -5,3 +5,8 @@ set -e
 # output.csv will need to be renamed to sensible unique identifier 
 echo "Running job on $NUM_CORES cores." 
 asli_calc $DATA_DIR/era5_mean_sea_level_pressure_monthly_*.nc -o $OUTPUT_DIR/asli_calculation_$FILE_IDENTIFIER.csv -n $NUM_CORES
+
+# If OUTPUT_PLOTTING is set also output plots
+if $OUTPUT_PLOTTING; then
+    asli_plot $DATA_DIR/era5_mean_sea_level_pressure_monthly_*.nc -i $OUTPUT_DIR/asli_calculation_$FILE_IDENTIFIER.csv -o $OUTPUT_DIR/asli_plot_$FILE_IDENTIFIER.png
+fi
