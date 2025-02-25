@@ -18,7 +18,7 @@ bash src/01_run_asli_calculations.sh
 
 # Script with carries out quality control checks on the data, can be configured in ENVS
 # Failure of checks will stop execution
-Rscript src/02_quality_checks.R "$OUTPUT_DIR/asli_calculation_$FILE_IDENTIFIER.csv" $SD_FROM_MEAN $ACTCENPRES_BOUNDS_MIN $ACTCENPRES_BOUNDS_MAX $MEDIAN_ABSOLUTE_DEVIATIONS 
+Rscript src/02_quality_checks.R "$OUTPUT_DIR/asli_calculation_$FILE_IDENTIFIER.csv" $SD_FROM_MEAN $ACTCENPRES_BOUNDS_MIN $ACTCENPRES_BOUNDS_MAX 
 
 # Exports files to destination, either object storage of classic file system
 # This also determines the file export format
