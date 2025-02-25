@@ -16,13 +16,10 @@ export OUTPUT_DIR=${OUTPUT_DIR:-${PIPELINE_DIRECTORY}/output}
 
 ## Output plotting
 # Specify whether a plot should also be written out
-export OUTPUT_PLOTTING=false
+export OUTPUT_PLOTTING=true
 
 # Specify environment so it does not need to be called prior to running
 export ASLI_VENV=${ASLI_VENV:-${PIPELINE_DIRECTORY}/asli_env/bin/activate}
-
-# Get the asli version
-export ASLI_VERSION=$(pip freeze | grep asli)
 
 ## Provenance
 # Generate an ROCrate?
