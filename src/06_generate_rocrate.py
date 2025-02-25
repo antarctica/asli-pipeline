@@ -10,6 +10,8 @@ import json
 from datetime import datetime
 from rdflib import *
 
+from importlib.metadata import version
+
 # Initialise ROCrate
 crate = ROCrate()
 
@@ -99,7 +101,7 @@ asli_package = crate.add(SoftwareApplication(crate, "asli_package", properties={
     "name": "asli",
     "type": ["File", "SoftwareSourceCode"],
     "url":"https://github.com/davidwilby/amundsen-sea-low-index",
-    "version": sys.argv[2]
+    "version": version("asli")
 }))
 
 butterfly_package = crate.add(SoftwareApplication(crate, "butterfly_package", properties={
