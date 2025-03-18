@@ -1,0 +1,8 @@
+site_name: asli-pipeline
+nav:
+  - Getting Started: index.md
+  - Configuration: config.md
+  - Running and Automating Pipeline: running_pipeline.md
+  - Deployment Example: deployment.md
+  - About: about.md
+theme: readthedocs
