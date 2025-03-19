@@ -5,7 +5,10 @@ This repository contains a pipeline for operational execution of the Amundsen Se
 This pipeline was built using the [icenet-pipeline](https://github.com/icenet-ai/icenet-pipeline) as a template (Byrne et al. 2024).  
 
 ## Citation
-If you use this pipeline in your work, please cite this repository by using the 'Cite this repostory' button on the top right of this repository.
+If you use this pipeline in your work, please use the following citation:
+
+Zwagerman, T., & Wilby, D. (2024). asli-pipeline (0.1.0). Zenodo. https://doi.org/10.5281/zenodo.14552486
+
 
 ## Acknowledgements
 This work used JASMIN, the UK’s collaborative data analysis environment (https://www.jasmin.ac.uk).
