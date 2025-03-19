@@ -1,11 +1,12 @@
 # Running the pipeline manually
 Before running the pipeline, make sure you have followed the steps above:
+
    1. Cloned the pipeline.
    2. Set up your environment.
    3. Installed `asli`.
    4. Set CDS API access with `.cdsapirc`.
    5. Set configurations `ENVS.myconfig` and symbolically linked to `ENVS`.
-   6. Set configurations for the Object Store in `.s3cfg`.
+   6. (_if exporting to S3 bucket_) Set configurations for the Object Store in `.s3cfg`.
 
 You can now run the pipeline:
 ```bash
@@ -51,6 +52,10 @@ bash src/00_download_era5.sh
 # Submitting a job to the short-serial partition on JASMIN
 sbatch -p short-serial -t 03:00 -o job01.out -e job01.err run_asli_pipeline.sh`
 ```
+
+!!! note
+
+    The command `src/00_download_era5.sh` is ran separately from `run_asli_pipeline.sh` here. SLURM terminates idle processes after a certain length of time (300s on the BAS HPC, for example). Because `src/00_download_era5.sh` requests a download from the CDS API, the request can be queued for a length of time that exceed the maximum idle limit, causing SLURM to terminate the process.
 
 On the BAS HPC, remember to set the working directory. For example:
 

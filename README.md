@@ -2,6 +2,9 @@
 
 <!-- badges: start -->
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.14552486.svg)](https://doi.org/10.5281/zenodo.14552486)
+![Dev Status](https://img.shields.io/badge/Status-Active-green)
+[![Static Badge](https://img.shields.io/badge/GitHub_repo-black?logo=github)](https://github.com/antarctica/asli-pipeline)
+[![Documentation](https://img.shields.io/badge/Documentation-blue)](https://antarctica.github.io/asli-pipeline/)
 <!-- badges: end -->
 
 This repository contains a pipeline for operational execution of the Amundsen Sea Ice Low calculations, provided in the `asli` package. The functions in the `asli` package are described in detail in the [package repository](https://github.com/davidwilby/amundsen-sea-low-index) `amundsen-sea-low-index` (Hosking & Wilby 2024), and in _Hosking et al. (2016)_.
