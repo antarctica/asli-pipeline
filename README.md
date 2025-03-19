@@ -60,8 +60,8 @@ cp ENVS.example ENVS.myconfig
 ln -sf ENVS.myconfig ENVS
 # Edit ENVS.myconfig to customise parameters for the pipeline
 ```
-
-Please inspect this file when running the pipeline for the first time. In particular `$FIRST_RUN` might prevent you from succesfully running the pipeline when set to `false` on first run.
+## Documentation
+Please refer to the [documentation](https://antarctica.github.io/asli-pipeline/) for a full breakdown of functionality.
 
 ## Citation
 If you use this pipeline in your work, please cite this repository by using the 'Cite this repostory' button on the top right of this repository.
