@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Running and Automating Pipeline - asli-pipeline</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Running and Automating Pipeline";
+        var mkdocs_page_input_path = "running_pipeline.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="..">
+          <img src="https://cdn.web.bas.ac.uk/bas-style-kit/0.7.3/img/logos-symbols/bas-logo-inverse-transparent-64.png" class="logo" alt="Logo"/>
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Getting Started</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../config/">Configuration</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Running and Automating Pipeline</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#automating-the-pipeline-with-cron">Automating the pipeline with cron</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#a-note-on-sbatchslurm">A note on sbatch/SLURM</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#managing-crontab-and-scrontab">Managing crontab and scrontab</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../deployment/">Deployment Example</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../about/">About</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">asli-pipeline</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Running and Automating Pipeline</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="running-the-pipeline-manually">Running the pipeline manually</h1>
+<p>Before running the pipeline, make sure you have followed the steps above:</p>
+<ol>
+<li>Cloned the pipeline.</li>
+<li>Set up your environment.</li>
+<li>Installed <code>asli</code>.</li>
+<li>Set CDS API access with <code>.cdsapirc</code>.</li>
+<li>Set configurations <code>ENVS.myconfig</code> and symbolically linked to <code>ENVS</code>.</li>
+<li>(<em>if exporting to S3 bucket</em>) Set configurations for the Object Store in <code>.s3cfg</code>.</li>
+</ol>
+<p>You can now run the pipeline:</p>
+<pre><code class="language-bash">deactivate # Your environment is set in ENVS, so you do not need to call it
+
+# Download the era5 data first
+bash src/00_download_era5.sh
+
+# Then run the whole pipeline
+bash run_asli_pipeline.sh
+</code></pre>
+<h2 id="automating-the-pipeline-with-cron">Automating the pipeline with cron</h2>
+<p>A cron example has been provided in the <code>cron.example</code> file.</p>
+<p>First, make <code>run_asli_pipeline.sh</code> executable with <code>chmod +x run_asli_pipeline.sh</code>. Also remember to do this after every pull <code>run_asli_pipeline.sh</code> has changes.</p>
+<pre><code class="language-bash">crontab -e
+
+# Then edit the file, for example to run once a month:
+0 3 1 * * cd $HOME/asli-pipeline; src/00_download_era5.sh &amp;&amp; run_asli_pipeline.sh; deactivate
+
+# OR on JASMIN we are using crontamer:
+0 3 1 * * crontamer -t 2h -e youremail@address.ac.uk 'cd gws/nopw/j04/dit/users/USERNAME/asli-pipeline; src/00_download_era5 &amp;&amp; run_asli_pipeline.sh; deactivate'
+
+# On the BAS HPC, you will likely need to load the software modules first as well:
+0 3 1 * * source/etc/profile.d/modules.sh; module load mamba/r-4.3; cd $HOME/asli-pipeline; src/00_download_era5.sh &amp;&amp; run_asli_pipeline.sh; deactivate
+</code></pre>
+<p>For more information on using cron on JASMIN, see <a href="https://help.jasmin.ac.uk/docs/workflow-management/using-cron/">Using Cron</a> in the JASMIN documentation, and the <a href="https://github.com/cedadev/crontamer">crontamer</a> package. The purpose of <code>crontamer</code> is to stop multiple process instances starting. It also times out after x hours and emails on error.</p>
+<h2 id="a-note-on-sbatchslurm">A note on sbatch/SLURM</h2>
+<p>If you need to submit this pipeline to SLURM (for example <a href="https://help.jasmin.ac.uk/docs/batch-computing/how-to-submit-a-job/">on JASMIN</a>), you will need to provide <code>sbatch</code> headers to the SLURM queue. We have not included sbatch headers in our script.</p>
+<p>However, you can include <code>sbatch</code> headers when you call the executable script: </p>
+<pre><code class="language-bash"># Downloading era5 data first, due to SLURM timeouts and CDS api response time
+# it is recommended to not send this script as a job to SLURM
+bash src/00_download_era5.sh
+
+# Submitting a job to the short-serial partition on JASMIN
+sbatch -p short-serial -t 03:00 -o job01.out -e job01.err run_asli_pipeline.sh`
+</code></pre>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The command <code>src/00_download_era5.sh</code> is ran separately from <code>run_asli_pipeline.sh</code> here. SLURM terminates idle processes after a certain length of time (300s on the BAS HPC, for example). Because <code>src/00_download_era5.sh</code> requests a download from the CDS API, the request can be queued for a length of time that exceed the maximum idle limit, causing SLURM to terminate the process.</p>
+</div>
+<p>On the BAS HPC, remember to set the working directory. For example:</p>
+<pre><code class="language-bash"># On the rocky machine, otherwise 'rocky' becomes 'short'
+sbatch -p rocky -A rocky -t 00:30 -D /users/USERNAME/asli-pipeline -o /data/hpcdata/users/USERNAME/out/asli_run.%j.%N.out -e /data/hpcdata/users/USERNAME/out/asli_run.%j.%N.err run_asli_pipeline.sh
+</code></pre>
+<h2 id="managing-crontab-and-scrontab">Managing crontab and scrontab</h2>
+<p>Below is a cron example of the entire pipeline running once a month on the BAS HPC:</p>
+<pre><code class="language-bash">0 3 1 * * source /etc/profile.d/modules.sh; module load mamba/r-4.3; cd $HOME/asli-pipeline; src/00_download_era5.sh &amp;&amp; run_asli_pipeline.sh; deactivate
+</code></pre>
+<p>When running the calculations on the entire dataset, this can take up a bit of memory. Ideally we send the processing to SLURM, however this is not possible with the downloading process, as it may take the CDS API too long to respond.</p>
+<p>Therefore we set up a crontab to <strong>only download the data</strong>, running locally, and a <a href="https://slurm.schedmd.com/scrontab.html">scrontab</a>, to send the <strong>processing</strong> to SLURM.</p>
+<p>Calling only the downloading script, on the first of the month at 1am:</p>
+<pre><code class="language-bash">crontab -e
+0 1 1 * * source /etc/profile.d/modules.sh; module load mamba/r-4.3; cd /users/thozwa/asli-pipeline; src/00_download_era5.sh
+</code></pre>
+<p>Sending the processing pipeline to SLURM on the first of the month at 5am:</p>
+<pre><code class="language-bash">scrontab -e
+
+# Then edit the script as follows:
+#SCRON --partition=rocky
+#SCRON --account=rocky
+#SCRON --time=00:45:00
+#SCRON --output=/data/hpcdata/users/USERNAME/out/asli_run.%j.%N.out
+#SCRON --error=/data/hpcdata/users/USERNAME/out/asli_run.%j.%N.err
+#SCRON --chdir=/users/USERNAME/asli-pipeline
+0 5 1 * * source /etc/profile.d/modules.sh &amp;&amp; module load mamba/r-4.3 &amp;&amp; run_asli_pipeline.sh
+</code></pre>
+<p>A SLURM cron example has been provided in the <code>scron.example</code> file.</p>
+<p>Combining crontab and scrontab to perform the entire pipeline once a month, in the most computationally-friendly way possible.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../config/" class="btn btn-neutral float-left" title="Configuration"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../deployment/" class="btn btn-neutral float-right" title="Deployment Example">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../config/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../deployment/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
