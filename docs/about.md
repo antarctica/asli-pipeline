@@ -7,7 +7,7 @@ This pipeline was built using the [icenet-pipeline](https://github.com/icenet-ai
 ## Citation
 If you use this pipeline in your work, please use the following citation:
 
-Zwagerman, T., & Wilby, D. (2024). asli-pipeline (0.1.0). Zenodo. https://doi.org/10.5281/zenodo.14552486
+> Zwagerman, T., & Wilby, D. (2024). asli-pipeline (0.1.0). Zenodo. https://doi.org/10.5281/zenodo.14552486
 
 
 ## Acknowledgements
