@@ -100,7 +100,7 @@ bash_pl = crate.add(Entity(crate, "bash", properties={
 asli_package = crate.add(SoftwareApplication(crate, "asli_package", properties={
     "name": "asli",
     "type": ["File", "SoftwareSourceCode"],
-    "url":"https://github.com/davidwilby/amundsen-sea-low-index",
+    "url":"https://github.com/davidwyld/amundsen-sea-low-index",
     "version": version("asli")
 }))
 
@@ -123,7 +123,7 @@ bas_org = crate.add(Entity(crate, "https://ror.org/01rhff309", properties={
 }))
 
 david = crate.add(Person(crate, david_id, properties={
-    "name": "David Wilby",
+    "name": "David Wyld",
     "affiliation": bas_org
 }))
 
