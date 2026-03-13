@@ -60,6 +60,19 @@ cp ENVS.example ENVS.myconfig
 ln -sf ENVS.myconfig ENVS
 # Edit ENVS.myconfig to customise parameters for the pipeline
 ```
+
+## Usage
+You can now run the pipeline:
+```bash
+deactivate # Your environment is set in ENVS, so you do not need to call it
+
+# Download the era5 data first
+bash src/00_download_era5.sh
+
+# Then run the whole pipeline
+bash run_asli_pipeline.sh
+```
+
 ## Documentation
 Please refer to the [documentation](https://antarctica.github.io/asli-pipeline/) for a full breakdown of functionality.
 

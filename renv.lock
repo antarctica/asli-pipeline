@@ -4,7 +4,7 @@
     "Repositories": [
       {
         "Name": "P3M",
-        "URL": "https://packagemanager.posit.co/cran/latest"
+        "URL": "https://p3m.dev/cran/__linux__/noble/latest"
       }
     ]
   },
@@ -209,7 +209,7 @@
     },
     "digest": {
       "Package": "digest",
-      "Version": "0.6.36",
+      "Version": "0.6.39",
       "Source": "Repository",
       "Repository": "CRAN",
       "Requirements": [
