@@ -21,7 +21,7 @@ with open('renv.lock') as f:
 
 data_input = crate.add_dataset("data/", "data", properties={
     "name":"ERA5 Data",
-    "description":"Folder containing ERA5 land sea mask (era5_lsm.nc) and ERA5/monthly/era5_mean_sea_level_pressure_monthly_*.nc files.",
+    "description":"Folder containing ERA5 land sea mask (era5_lsm.nc) and era5/monthly/era5_mean_sea_level_pressure_monthly_*.nc files.",
     "type":"FormalParameter",
     "valueRequired":True,
     "encodingFormat":"application/netcdf"
@@ -56,7 +56,7 @@ pipeline =  crate.add_file("run_asli_pipeline.sh", properties={
 download_era5_action = crate.add(Entity(crate, "Download ERA5 data", properties={
     "@type":"CreateAction",
     "name":"Downloading required ERA5 data",
-    "description":"Script downloading the era5 land sea mask (era5_lsm.nc) and mean sea level pressure data (data/ERA5/monthly/era5_mean_sea_level_pressure_*.nc), referencing ENVS to obtain query parameters.",
+    "description":"Script downloading the era5 land sea mask (era5_lsm.nc) and mean sea level pressure data (data/era5/monthly/era5_mean_sea_level_pressure_*.nc), referencing ENVS to obtain query parameters.",
     "endTime":Literal(datetime.now().isoformat),
     "instrument":[pipeline_scripts, pipeline_configuration],
     "object":"https://cds.climate.copernicus.eu/api",
@@ -66,7 +66,7 @@ download_era5_action = crate.add(Entity(crate, "Download ERA5 data", properties=
 output_action = crate.add(Entity(crate, "ASLI_Calculation", properties={
     "@type":"CreateAction",
     "name":"Running ASLI Calculations on ERA5 data",
-    "description":"Pipeline executing asli python package functionality using the era5 land sea mask (era5_lsm.nc) and mean sea level pressure data (data/ERA5/monthly/era5_mean_sea_level_pressure_*.nc)",
+    "description":"Pipeline executing asli python package functionality using the era5 land sea mask (era5_lsm.nc) and mean sea level pressure data (data/era5/monthly/era5_mean_sea_level_pressure_*.nc)",
     "endTime":Literal(datetime.now().isoformat),
     "instrument":[pipeline, pipeline_scripts],
     "object":data_input,

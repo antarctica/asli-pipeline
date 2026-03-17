@@ -19,7 +19,7 @@ jasmin_s3 = s3fs.S3FileSystem(
 )
 
 # Open all ERA5 data, sys.argv[1] expects a list of nc files
-# e.g. data/ERA5/monthly/*.nc
+# e.g. data/era5/monthly/*.nc
 era5_dataset = xr.open_mfdataset(sys.argv[1], engine="netcdf4")
 
 # Set s3 store destination, sys.argv[2] is s3 bucket name
