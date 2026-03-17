@@ -8,7 +8,6 @@ import platform
 import json 
 
 from datetime import datetime
-from rdflib import Literal
 
 from importlib.metadata import version
 
@@ -37,7 +36,7 @@ data_output = crate.add_dataset("output/", "output", properties={
     "name": "ASL Calculations",
     "type": "FormalParameter",
     "encodingFormat": "text/csv",
-    "datePublished": Literal(datetime.now().isoformat)
+    "datePublished": datetime.now().isoformat()
 })
 
 pipeline_scripts = crate.add_directory("src/", "src", properties={
@@ -57,7 +56,7 @@ download_era5_action = crate.add(Entity(crate, "Download ERA5 data", properties=
     "@type":"CreateAction",
     "name":"Downloading required ERA5 data",
     "description":"Script downloading the era5 land sea mask (era5_lsm.nc) and mean sea level pressure data (data/era5/monthly/era5_mean_sea_level_pressure_*.nc), referencing ENVS to obtain query parameters.",
-    "endTime":Literal(datetime.now().isoformat),
+    "endTime": datetime.now().isoformat(),
     "instrument":[pipeline_scripts, pipeline_configuration],
     "object":"https://cds.climate.copernicus.eu/api",
     "result":data_input
@@ -67,7 +66,7 @@ output_action = crate.add(Entity(crate, "ASLI_Calculation", properties={
     "@type":"CreateAction",
     "name":"Running ASLI Calculations on ERA5 data",
     "description":"Pipeline executing asli python package functionality using the era5 land sea mask (era5_lsm.nc) and mean sea level pressure data (data/era5/monthly/era5_mean_sea_level_pressure_*.nc)",
-    "endTime":Literal(datetime.now().isoformat),
+    "endTime": datetime.now().isoformat(),
     "instrument":[pipeline, pipeline_scripts],
     "object":data_input,
     "result":data_output
