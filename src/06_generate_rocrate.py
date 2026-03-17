@@ -8,7 +8,7 @@ import platform
 import json 
 
 from datetime import datetime
-from rdflib import *
+from rdflib import Literal
 
 from importlib.metadata import version
 
