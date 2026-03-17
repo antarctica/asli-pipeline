@@ -3,6 +3,8 @@
 # Obtain passed arguments
 args = commandArgs(trailingOnly=TRUE)
 
+n_header_rows <- 33
+
 # Test if there is two arguments: the output and previous file
 if (length(args)!=2) {
   stop("Please provide the output file, and the file it is being compared to", call.=FALSE)
@@ -10,10 +12,12 @@ if (length(args)!=2) {
   
   current_output <- readr::read_csv(
     args[1],
-    skip = 29,
+    skip = n_header_rows,
     show_col_types = FALSE
   )
   
+  print(current_output)
+
   # Check if we are checking a file on s3, or local 
   # The s3 file will require the use of the config file
   if (startsWith(args[2], "s3://")) {
@@ -51,22 +55,23 @@ if (length(args)!=2) {
     existing_file <- s3_bucket$Body |> 
       rawToChar() |> 
       readr::read_csv(
-        skip = 29,
+        skip = n_header_rows,
         show_col_types = FALSE
       )
   } else {
     existing_file <- readr::read_csv(
       args[2],
-      skip = 29,
+      skip = n_header_rows,
       show_col_types = FALSE
     )
   }
   
   # Use butterfly to check there are no changes to past data
+  print(existing_file)
   qa_outcome <- butterfly::loupe(
     current_output,
     existing_file,
-    datetime_variable = "time"
+    datetime_variable = "time (mo)"
   )
 
   if (!isTRUE(qa_outcome)) {
