@@ -1,6 +1,6 @@
 ##
 # Most of the variables below will not need changing
-# The asli package looks for /data/ERA5/monthly, so does not need changing
+# The asli package looks for /data/era5/monthly, so does not need changing
 # 
 # Note ASLI_VENV is set as asli_env, as per the setup instructions
 # Change this if you gave it a different name
@@ -11,7 +11,7 @@
 export PIPELINE_DIRECTORY=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
 # Set input and output directories, asli functions do not handle this 
-export DATA_DIR=${DATA_DIR:-${PIPELINE_DIRECTORY}/data/ERA5/monthly}
+export DATA_DIR=${DATA_DIR:-${PIPELINE_DIRECTORY}/data/era5/monthly}
 export OUTPUT_DIR=${OUTPUT_DIR:-${PIPELINE_DIRECTORY}/output}
 
 ## Output plotting
