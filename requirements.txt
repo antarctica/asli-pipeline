@@ -1,2 +1,4 @@
 asli[s3] @ git+https://github.com/davidwyld/amundsen-sea-low-index@packaging
+pandas
+pandera[pandas]
 rocrate
