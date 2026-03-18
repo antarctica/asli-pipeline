@@ -21,10 +21,8 @@ git clone git@github.com:antarctica/asli-pipeline.git asli-pipeline
 ```bash
 # If you are working on JASMIN you will need to load in jaspy and jasr
 module load jaspy 
-module load jasr
 
 # Or, on the BAS HPC:
-module load mamba/r-* # any version above 4.*
 module load python/3.12.3/gcc-11.4.1-n3s7
 
 python -m venv asli_env
@@ -36,12 +34,6 @@ source asli_env/bin/activate
 To install all dependencies, inlcuding the `asli` package, run:
 ```bash
 pip install -r requirements.txt
-
-# For R, we are using {renv} to manage dependencies
-# install.R uses renv::restore, in combination with
-# automatic distro detection to install R & system 
-# dependencies
-R -f install.R
 ```
 ## Setting up Climate Data Store API
 The `asli` package will not be able to download ERA5 data without access to the [Copernicus Climate Data Store](https://cds.climate.copernicus.eu/cdsapp#!/home).
