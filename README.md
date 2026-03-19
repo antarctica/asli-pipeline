@@ -1,9 +1,9 @@
+<!--index-start-->
 # asli-pipeline
 
-<!--index-start-->
 
 <!-- badges: start -->
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.14552486.svg)](https://doi.org/10.5281/zenodo.14552486)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.14552485.svg)](https://doi.org/10.5281/zenodo.14552485)
 ![Dev Status](https://img.shields.io/badge/Status-Active-green)
 [![Static Badge](https://img.shields.io/badge/GitHub_repo-black?logo=github)](https://github.com/antarctica/asli-pipeline)
 [![Documentation](https://img.shields.io/badge/Documentation-blue)](https://antarctica.github.io/asli-pipeline/)
