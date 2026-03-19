@@ -65,7 +65,7 @@ export DATA_ARGS_ERA5="-s ${START_YEAR} -n ${CURRENT_YEAR}"
 
 ## File format
 # Number of header lines in the output file as created by the asli package
-export HEADER_LINES = 33
+export HEADER_LINES=33
 
 # FILE_IDENTIFIER will what the output filename is called
 # ie asli_calculation_$FILE_IDENTIFIER.csv
