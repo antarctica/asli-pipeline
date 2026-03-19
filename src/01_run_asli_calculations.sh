@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e
+set -eu
 
 # Run calculation, specifying output location
 # output.csv will need to be renamed to sensible unique identifier 
