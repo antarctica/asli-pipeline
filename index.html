@@ -43,20 +43,6 @@
               <ul class="current">
                 <li class="toctree-l1 current"><a class="reference internal current" href="#">Getting Started</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#clone-the-repository">Clone the repository</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#creating-an-environment">Creating an environment</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#installing-dependencies">Installing dependencies</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#packages-and-virtual-environments-on-jasmin">Packages and Virtual Environments on JASMIN</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#climate-data-store-api">Climate Data Store API</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a>
-    </li>
     </ul>
                 </li>
               </ul>
@@ -99,55 +85,56 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="asli-pipeline">asli-pipeline</h1>
-<!-- badges: start -->
+                <!-- badges: start -->
 <p><a href="https://doi.org/10.5281/zenodo.14552486"><img alt="DOI" src="https://zenodo.org/badge/DOI/10.5281/zenodo.14552486.svg" /></a>
 <img alt="Dev Status" src="https://img.shields.io/badge/Status-Active-green" />
 <a href="https://github.com/antarctica/asli-pipeline"><img alt="Static Badge" src="https://img.shields.io/badge/GitHub_repo-black?logo=github" /></a>
 <a href="https://antarctica.github.io/asli-pipeline/"><img alt="Documentation" src="https://img.shields.io/badge/Documentation-blue" /></a></p>
 <!-- badges: end -->
 
-<p>This repository contains a pipeline for operational execution of the Amundsen Sea Ice Low calculations, provided in the <code>asli</code> package. The functions in the <code>asli</code> package are described in detail in the <a href="https://github.com/davidwilby/amundsen-sea-low-index">package repository</a> <code>amundsen-sea-low-index</code> (Hosking &amp; Wilby 2024), and in <em>Hosking et al. (2016)</em>.</p>
-<p>This pipeline was built using the <a href="https://github.com/icenet-ai/icenet-pipeline">icenet-pipeline</a> as a template (Byrne et al. 2024).</p>
-<h2 id="clone-the-repository">Clone the repository</h2>
+<p>This repository contains a pipeline for operational execution of the Amundsen Sea Ice Low calculations, provided in the <code>asli</code> package. The functions in the <code>asli</code> package are described in detail in the <a href="https://github.com/davidwyld/amundsen-sea-low-index">package repository</a> <code>amundsen-sea-low-index</code> (Hosking &amp; Wyld 2024), and in <em>Hosking et al. (2016)</em>.</p>
+<p>This pipeline was built using the <a href="https://github.com/icenet-ai/icenet-pipeline">icenet-pipeline</a> as a template (Byrne et al. 2024).  </p>
+<h2 id="get-the-repository">Get the repository</h2>
 <p>Clone this repository into a directory on your computer or HPC.</p>
 <pre><code>git clone git@github.com:antarctica/asli-pipeline.git asli-pipeline
 </code></pre>
 <h2 id="creating-an-environment">Creating an environment</h2>
 <pre><code class="language-bash"># If you are working on JASMIN you will need to load in jaspy and jasr
 module load jaspy 
-module load jasr
 
 # Or, on the BAS HPC:
-module load mamba/r-* # any version above 4.*
 module load python/3.12.3/gcc-11.4.1-n3s7
 
 python -m venv asli_env
 
 source asli_env/bin/activate
 </code></pre>
-<h2 id="installing-dependencies">Installing dependencies</h2>
+<h3 id="installing-dependencies">Installing dependencies</h3>
 <p>To install all dependencies, inlcuding the <code>asli</code> package, run:</p>
 <pre><code class="language-bash">pip install -r requirements.txt
-
-# For R, we are using {renv} to manage dependencies
-# install.R uses renv::restore, in combination with
-# automatic distro detection to install R &amp; system 
-# dependencies
-R -f install.R
 </code></pre>
-<h3 id="packages-and-virtual-environments-on-jasmin">Packages and Virtual Environments on JASMIN</h3>
-<p>If you are working on JASMIN, it is good to familiarise yourself with managing software environments on Jasmin:
-   1. <a href="https://help.jasmin.ac.uk/docs/software-on-jasmin/quickstart-software-envs/">Quick Start on software for JASMIN</a>
-   2. <a href="https://help.jasmin.ac.uk/docs/software-on-jasmin/python-virtual-environments/">Python Virtual Environments for JASMIN</a>.</p>
-<h2 id="climate-data-store-api">Climate Data Store API</h2>
+<h2 id="setting-up-climate-data-store-api">Setting up Climate Data Store API</h2>
 <p>The <code>asli</code> package will not be able to download ERA5 data without access to the <a href="https://cds.climate.copernicus.eu/cdsapp#!/home">Copernicus Climate Data Store</a>.</p>
 <p>Follow these instructions to set up CDS API access: <a href="https://cds-beta.climate.copernicus.eu/how-to-api">How to Use The CDS API</a>.</p>
 <pre><code class="language-bash">nano $HOME/.cdsapirc
 # Paste in your {uid} and {api-key} 
 </code></pre>
-<h2 id="overview">Overview</h2>
-<p>This pipeline combines Python and R.</p>
+<h2 id="configuration">Configuration</h2>
+<p>This pipeline revolves around the <code>ENVS</code> file to provide the necessary configuration items. This can easily be derived from the <code>ENVS.example</code> file to a new file, then symbolically linked. Comments are available in <code>ENVS.example</code> to assist you with the editing process.</p>
+<pre><code class="language-bash">cp ENVS.example ENVS.myconfig
+ln -sf ENVS.myconfig ENVS
+# Edit ENVS.myconfig to customise parameters for the pipeline
+</code></pre>
+<h2 id="usage">Usage</h2>
+<p>You can now run the pipeline:</p>
+<pre><code class="language-bash">deactivate # Your environment is set in ENVS, so you do not need to call it
+
+# Download the era5 data first
+bash src/00_download_era5.sh
+
+# Then run the whole pipeline
+bash run_asli_pipeline.sh
+</code></pre>
               
             </div>
           </div><footer>
@@ -196,5 +183,5 @@ R -f install.R
 
 <!--
 MkDocs version : 1.6.1
-Build Date UTC : 2025-03-19 16:08:27.191014+00:00
+Build Date UTC : 2026-03-19 15:48:52.022044+00:00
 -->

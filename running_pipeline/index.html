@@ -122,7 +122,7 @@ bash run_asli_pipeline.sh
 0 3 1 * * crontamer -t 2h -e youremail@address.ac.uk 'cd gws/nopw/j04/dit/users/USERNAME/asli-pipeline; src/00_download_era5 &amp;&amp; run_asli_pipeline.sh; deactivate'
 
 # On the BAS HPC, you will likely need to load the software modules first as well:
-0 3 1 * * source/etc/profile.d/modules.sh; module load mamba/r-4.3; cd $HOME/asli-pipeline; src/00_download_era5.sh &amp;&amp; run_asli_pipeline.sh; deactivate
+0 3 1 * * source/etc/profile.d/modules.sh; cd $HOME/asli-pipeline; src/00_download_era5.sh &amp;&amp; run_asli_pipeline.sh; deactivate
 </code></pre>
 <p>For more information on using cron on JASMIN, see <a href="https://help.jasmin.ac.uk/docs/workflow-management/using-cron/">Using Cron</a> in the JASMIN documentation, and the <a href="https://github.com/cedadev/crontamer">crontamer</a> package. The purpose of <code>crontamer</code> is to stop multiple process instances starting. It also times out after x hours and emails on error.</p>
 <h2 id="a-note-on-sbatchslurm">A note on sbatch/SLURM</h2>
@@ -145,13 +145,13 @@ sbatch -p rocky -A rocky -t 00:30 -D /users/USERNAME/asli-pipeline -o /data/hpcd
 </code></pre>
 <h2 id="managing-crontab-and-scrontab">Managing crontab and scrontab</h2>
 <p>Below is a cron example of the entire pipeline running once a month on the BAS HPC:</p>
-<pre><code class="language-bash">0 3 1 * * source /etc/profile.d/modules.sh; module load mamba/r-4.3; cd $HOME/asli-pipeline; src/00_download_era5.sh &amp;&amp; run_asli_pipeline.sh; deactivate
+<pre><code class="language-bash">0 3 1 * * source /etc/profile.d/modules.sh; cd $HOME/asli-pipeline; src/00_download_era5.sh &amp;&amp; run_asli_pipeline.sh; deactivate
 </code></pre>
 <p>When running the calculations on the entire dataset, this can take up a bit of memory. Ideally we send the processing to SLURM, however this is not possible with the downloading process, as it may take the CDS API too long to respond.</p>
 <p>Therefore we set up a crontab to <strong>only download the data</strong>, running locally, and a <a href="https://slurm.schedmd.com/scrontab.html">scrontab</a>, to send the <strong>processing</strong> to SLURM.</p>
 <p>Calling only the downloading script, on the first of the month at 1am:</p>
 <pre><code class="language-bash">crontab -e
-0 1 1 * * source /etc/profile.d/modules.sh; module load mamba/r-4.3; cd /users/thozwa/asli-pipeline; src/00_download_era5.sh
+0 1 1 * * source /etc/profile.d/modules.sh; cd /users/thozwa/asli-pipeline; src/00_download_era5.sh
 </code></pre>
 <p>Sending the processing pipeline to SLURM on the first of the month at 5am:</p>
 <pre><code class="language-bash">scrontab -e
@@ -163,7 +163,7 @@ sbatch -p rocky -A rocky -t 00:30 -D /users/USERNAME/asli-pipeline -o /data/hpcd
 #SCRON --output=/data/hpcdata/users/USERNAME/out/asli_run.%j.%N.out
 #SCRON --error=/data/hpcdata/users/USERNAME/out/asli_run.%j.%N.err
 #SCRON --chdir=/users/USERNAME/asli-pipeline
-0 5 1 * * source /etc/profile.d/modules.sh &amp;&amp; module load mamba/r-4.3 &amp;&amp; run_asli_pipeline.sh
+0 5 1 * * source /etc/profile.d/modules.sh &amp;&amp; run_asli_pipeline.sh
 </code></pre>
 <p>A SLURM cron example has been provided in the <code>scron.example</code> file.</p>
 <p>Combining crontab and scrontab to perform the entire pipeline once a month, in the most computationally-friendly way possible.</p>
