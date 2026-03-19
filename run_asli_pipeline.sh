@@ -28,7 +28,7 @@ case ${FILE_DESTINATION} in
 		# Provide old and new file
 		# Only run if it is not the first run, ie there is a file to compare against
 		if [[ "${FIRST_RUN}" != true ]]; then
-			Rscript src/03_verify_no_past_changes.R "$OUTPUT_DIR/asli_calculation_$FILE_IDENTIFIER.csv" "$S3_BUCKET/asli_calculation_$FILE_IDENTIFIER.csv"
+			python src/03_verify_no_past_changes.py --new "$OUTPUT_DIR/asli_calculation_$FILE_IDENTIFIER.csv" --previous "$S3_BUCKET/asli_calculation_$FILE_IDENTIFIER.csv"
 		fi
 
 		bash src/04_export_to_object_store.sh
@@ -37,13 +37,13 @@ case ${FILE_DESTINATION} in
 	# ie when BOTH is matched, it also runs FILE_SYSTEM
 	BOTH)
 		if [[ "${FIRST_RUN}" != true ]]; then
-			Rscript src/03_verify_no_past_changes.R "$OUTPUT_DIR/asli_calculation_$FILE_IDENTIFIER.csv" "$S3_BUCKET/asli_calculation_$FILE_IDENTIFIER.csv"
+			python src/03_verify_no_past_changes.py --new "$OUTPUT_DIR/asli_calculation_$FILE_IDENTIFIER.csv" --previous "$S3_BUCKET/asli_calculation_$FILE_IDENTIFIER.csv"
 		fi
 		bash src/04_export_to_object_store.sh
 		;&
 	FILE_SYSTEM)
 		if [[ "${FIRST_RUN}" != true ]]; then
-			Rscript src/03_verify_no_past_changes.R "$OUTPUT_DIR/asli_calculation_$FILE_IDENTIFIER.csv" "$RSYNC_LOCATION/asli_calculation_$FILE_IDENTIFIER.csv"
+			python src/03_verify_no_past_changes.py --new "$OUTPUT_DIR/asli_calculation_$FILE_IDENTIFIER.csv" --previous "$RSYNC_LOCATION/asli_calculation_$FILE_IDENTIFIER.csv"
 		fi
 		bash src/05_export_to_file_system.sh
 		;;
