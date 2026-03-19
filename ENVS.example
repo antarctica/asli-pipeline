@@ -79,3 +79,6 @@ export SD_FROM_MEAN=4
 # Values of bounds we expect ActCenPres to be in
 export ACTCENPRES_BOUNDS_MIN=900
 export ACTCENPRES_BOUNDS_MAX=1100
+
+## Remove data when finished
+export CLEANUP=false

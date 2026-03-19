@@ -10,3 +10,7 @@ theme:
   logo: https://cdn.web.bas.ac.uk/bas-style-kit/0.7.3/img/logos-symbols/bas-logo-inverse-transparent-64.png
 markdown_extensions:
   - admonition
+plugins: 
+  - search
+  - include-markdown:
+      rewrite_relative_urls: true
