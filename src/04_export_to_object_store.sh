@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e
+set -eu
 
 # Check if OUTPUT directory exists and that it contains files
 if [ ! -d $OUTPUT_DIR ]; then

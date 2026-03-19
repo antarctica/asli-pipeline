@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e
+set -eu
 
 # Read in config file
 source ENVS
