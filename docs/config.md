@@ -51,6 +51,9 @@ These parameters control quality control values:
 * **ACTCENPRES_BOUNDS_MIN**: Minimum value (in hPA) we expect actual_central_pressure to be above.
 * **ACTCENPRES_BOUNDS_MAX**: Maximum value (in hPA) we expect actual_central_pressure to be below.
 
+### Cleanup
+
+* **CLEANUP**: If `true`, will delete data directory as last step following successful execution of the pipeline.
 
 ## Data Output
 The pipeline allows data output to the JASMIN Object Store, a local file system, or both - depending on where you are running this pipeline and which output file formats you would like to use.

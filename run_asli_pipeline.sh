@@ -59,4 +59,6 @@ fi
 
 # Clean up the data dir, but retain output
 # If I use $DATA_DIR here it will only remove /monthly
-rm -r $PIPELINE_DIRECTORY/data
+if [[ "${CLEANUP}" == true ]]; then
+	rm -r $PIPELINE_DIRECTORY/data
+fi
