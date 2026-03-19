@@ -1,5 +1,7 @@
 # asli-pipeline
 
+<!--index-start-->
+
 <!-- badges: start -->
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.14552486.svg)](https://doi.org/10.5281/zenodo.14552486)
 ![Dev Status](https://img.shields.io/badge/Status-Active-green)
@@ -65,9 +67,12 @@ bash src/00_download_era5.sh
 bash run_asli_pipeline.sh
 ```
 
+<!--index-end-->
+
 ## Documentation
 Please refer to the [documentation](https://antarctica.github.io/asli-pipeline/) for a full breakdown of functionality.
 
+<!--about-start-->
 ## Citation
 If you use this pipeline in your work, please cite this repository by using the 'Cite this repostory' button on the top right of this repository.
 
@@ -88,3 +93,4 @@ The `asli` package uses data from Hersbach, H. et al., (2018) downloaded from th
 + Wyld, D., Zwagerman, T. and Hosking, J. S. asli [Computer software]. https://github.com/scotthosking/amundsen-sea-low-index
 + Lawrence, B. N. , Bennett, V. L., Churchill, J., Juckes, M., Kershaw, P., Pascoe, S., Pepler, S., Pritchard, M. and Stephens, A. (2013) Storing and manipulating environmental big data with JASMIN. In: IEEE Big Data, October 6-9, 2013, San Francisco.
 
+<!--about-end-->
