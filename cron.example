@@ -8,4 +8,4 @@
 
 # BAS HPC example:
 # On the BAS HPC, you will likely need to load the software modules first as well:
-0 3 1 * * source/etc/profile.d/modules.sh; module load mamba/r-4.3; cd $HOME/asli-pipeline; src/00_download_era5.sh && run_asli_pipeline.sh; deactivate
+0 3 1 * * source/etc/profile.d/modules.sh; cd $HOME/asli-pipeline; src/00_download_era5.sh && run_asli_pipeline.sh; deactivate

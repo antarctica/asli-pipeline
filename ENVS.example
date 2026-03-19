@@ -47,6 +47,8 @@ export VALID_DESTINATIONS=(OBJECT_STORAGE, FILE_SYSTEM, BOTH)
 # Setting S3 bucket, if using
 # The endpoint is set in your .s3cfg file
 export S3_BUCKET=""
+# path to your .s3cfg file, defaults to the pipeline directory
+export S3_CONFIG_PATH={S3_CONFIG_PATH:-${PIPELINE_DIRECTORY}/.s3cfg}
 
 # Setting rsync location, if using
 export RSYNC_LOCATION="/users/thozwa/test_destination"
@@ -60,6 +62,10 @@ export CURRENT_YEAR="`date --utc +"%Y"`"
 export START_YEAR=2024
 export END_YEAR=${CURRENT_YEAR}
 export DATA_ARGS_ERA5="-s ${START_YEAR} -n ${CURRENT_YEAR}"
+
+## File format
+# Number of header lines in the output file as created by the asli package
+export HEADER_LINES = 33
 
 # FILE_IDENTIFIER will what the output filename is called
 # ie asli_calculation_$FILE_IDENTIFIER.csv
