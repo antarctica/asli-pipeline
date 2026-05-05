@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e
+set -eu
 
 # Read in config file
 source ENVS
@@ -21,6 +21,7 @@ done
 
 # Fetch land sea mask, automatically writes in data directory
 # Everything is pre-set in asli functions, no arguments needed for our purpose
+echo "Requesting land sea mask data"
 asli download --lsm
 
 # Downloading latest ERA5 data, provide information to the user
@@ -45,3 +46,4 @@ for f in "$DATA_DIR"/era5_mean_sea_level_pressure_monthly_*.nc; do
 		rm -rf "$tmpdir"
 	fi
 done
+
