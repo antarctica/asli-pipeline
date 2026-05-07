@@ -1,4 +1,4 @@
-asli[s3] @ git+https://github.com/antarctica/asli@v0.2.1
+bas-asli[s3] >= 0.2.4
 pandas
 pandera[pandas]
 rocrate
