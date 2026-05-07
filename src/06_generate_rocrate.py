@@ -99,7 +99,7 @@ bash_pl = crate.add(Entity(crate, "bash", properties={
 asli_package = crate.add(SoftwareApplication(crate, "asli_package", properties={
     "name": "asli",
     "type": ["File", "SoftwareSourceCode"],
-    "url":"https://github.com/davidwyld/amundsen-sea-low-index",
+    "url":"https://github.com/antarctica/asli",
     "version": version("asli")
 }))
 
