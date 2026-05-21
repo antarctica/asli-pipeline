@@ -49,8 +49,8 @@ if __name__ == "__main__":
     df = pd.read_csv(args.filename, header=args.header)
 
     # compute actual central pressure standard deviation bounds
-    acp_mean = df.loc[:, "actual_central_pressure (hPA)"].mean()
-    acp_sd = df.loc[:, "actual_central_pressure (hPA)"].std()
+    acp_mean = df.loc[:, "actual_central_pressure (hPa)"].mean()
+    acp_sd = df.loc[:, "actual_central_pressure (hPa)"].std()
     acp_sd_min = acp_mean - args.stdevs*acp_sd
     acp_sd_max = acp_mean + args.stdevs*acp_sd
 
@@ -59,13 +59,13 @@ if __name__ == "__main__":
         "time (mo)": pa.Column(pa.dtypes.DateTime, coerce=True, unique=True),
         "longitude (degree)": pa.Column(float, [pa.Check.ge(LON_MIN), pa.Check.le(LON_MAX)]),
         "latitude (degree)": pa.Column(float, [pa.Check.ge(LAT_MIN), pa.Check.le(LAT_MAX)]),
-        "actual_central_pressure (hPA)": pa.Column(float, [
+        "actual_central_pressure (hPa)": pa.Column(float, [
             pa.Check.ge(0),
             pa.Check.in_range(args.min, args.max),
             pa.Check.in_range(acp_sd_min, acp_sd_max),
             ]),
-        "sector_pressure (hPA) [a]": pa.Column(float, pa.Check.ge(0)),
-        "relative_central_pressure (hPA) [b]": pa.Column(float, pa.Check.le(0)),
+        "sector_pressure (hPa) [a]": pa.Column(float, pa.Check.ge(0)),
+        "relative_central_pressure (hPa) [b]": pa.Column(float, pa.Check.le(0)),
         "data_source [c]": pa.Column(str, pa.Check.isin(["ERA5", "ERA5T"])),
     })
 
