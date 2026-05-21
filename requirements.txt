@@ -1,4 +1,4 @@
-bas-asli[s3] >= 0.2.4
+bas-asli[s3] >= 0.2.5
 pandas
 pandera[pandas]
 rocrate
