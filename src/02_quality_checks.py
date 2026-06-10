@@ -16,7 +16,7 @@ if __name__ == "__main__":
         "--header",
         type=int,
         nargs='?',
-        default=os.getenv("HEADER_LINES", 33),
+        default=os.getenv("HEADER_LINES", 34),
         help="Number of header lines in the csv file."
         )
     parser.add_argument(
@@ -44,9 +44,11 @@ if __name__ == "__main__":
     parser.add_argument("filename",help="Path to ASLI csv file.")
 
     args = parser.parse_args()
- 
+
     # read in current file
     df = pd.read_csv(args.filename, header=args.header)
+
+    print(df.columns)
 
     # compute actual central pressure standard deviation bounds
     acp_mean = df.loc[:, "actual_central_pressure (hPa)"].mean()
@@ -66,7 +68,7 @@ if __name__ == "__main__":
             ]),
         "sector_pressure (hPa) [a]": pa.Column(float, pa.Check.ge(0)),
         "relative_central_pressure (hPa) [b]": pa.Column(float, pa.Check.le(0)),
-        "data_source [c]": pa.Column(str, pa.Check.isin(["ERA5", "ERA5T"])),
+        "data_source [c] [d]": pa.Column(str, pa.Check.isin(["ERA5", "ERA5T"])),
     })
 
     schema.validate(df) # validation failure raises error and stops execution, exiting with non-zero exit code
