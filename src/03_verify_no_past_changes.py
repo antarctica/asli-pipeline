@@ -14,7 +14,7 @@ if __name__ == "__main__":
         "--header",
         type=int,
         nargs='?',
-        default=os.getenv("HEADER_LINES", 33),
+        default=os.getenv("HEADER_LINES", 34),
         help="Number of header lines in the csv file."
         )
     parser.add_argument(
