@@ -59,6 +59,8 @@
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#quality-control">Quality Control</a>
     </li>
+    <li class="toctree-l3"><a class="reference internal" href="#cleanup">Cleanup</a>
+    </li>
         </ul>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#data-output">Data Output</a>
@@ -129,32 +131,37 @@ ln -sf ENVS.myconfig ENVS
 <h3 id="run-configuration">Run Configuration</h3>
 <p>These parameters are provided to configure how the pipeline should run:</p>
 <ul>
-<li><strong>EXPORT_ROCRATE</strong>: Should the pipeline generate an RO-Crate object. Should be one of true/false.</li>
-<li><strong>NUM_CORES</strong>: Number of parallel jobs to run the pipeline with.</li>
-<li><strong>FIRST_RUN</strong>: Is this the first run? Should be one of true/false. Setting this to true will prevent the pipeline from running verification checks against a file that does not exist yet.</li>
+<li><code>EXPORT_ROCRATE</code>: Should the pipeline generate an RO-Crate object. Should be one of true/false.</li>
+<li><code>NUM_CORES</code>: Number of parallel jobs to run the pipeline with.</li>
+<li><code>FIRST_RUN</code>: Is this the first run? Should be one of true/false. Setting this to true will prevent the pipeline from running verification checks against a file that does not exist yet.</li>
+<li><code>MSL_PATTERN</code>: The filename pattern passed to <code>asli calc</code> matching the file(s) containing pressure data, e.g. "era5_mean_sea_level_pressure_monthly_${START_YEAR}-${END_YEAR}.nc"</li>
 </ul>
 <h3 id="file-export">File Export</h3>
 <p>These parameters are provided to determine file export:</p>
 <ul>
-<li><strong>FILE_DESTINATION</strong>: What type of file storage should the ASLI calculation be export to? One of <code>OBJECT_STORAGE</code>, <code>FILE_SYSTEM</code> or <code>BOTH</code></li>
-<li><strong>VALID_DESTINATIONS</strong>: A list of valid destinations (<code>OBJECT_STORAGE</code>, <code>FILE_SYSTEM</code>, <code>BOTH</code>). No need to change.</li>
-<li><strong>S3_BUCKET</strong>: If <code>FILE_DESTINATION</code> is <code>OBJECT_STORAGE</code> or <code>BOTH</code>, the S3 bucket endpoint to export ASLI calculation results to.</li>
-<li><strong>RSYNC_LOCATION</strong>: If <code>FILE_DESTINATION</code> is <code>FILE_SYSTEM</code> or <code>BOTH</code>, the file path to export ASLI calculation results to.</li>
-<li><strong>FILE_IDENTIFIER</strong>: A unique identifier for the ASLI calculation output file.</li>
+<li><code>FILE_DESTINATION</code>: What type of file storage should the ASLI calculation be export to? One of <code>OBJECT_STORAGE</code>, <code>FILE_SYSTEM</code> or <code>BOTH</code></li>
+<li><code>VALID_DESTINATIONS</code>: A list of valid destinations (<code>OBJECT_STORAGE</code>, <code>FILE_SYSTEM</code>, <code>BOTH</code>). No need to change.</li>
+<li><code>S3_BUCKET</code>: If <code>FILE_DESTINATION</code> is <code>OBJECT_STORAGE</code> or <code>BOTH</code>, the S3 bucket endpoint to export ASLI calculation results to.</li>
+<li><code>RSYNC_LOCATION</code>: If <code>FILE_DESTINATION</code> is <code>FILE_SYSTEM</code> or <code>BOTH</code>, the file path to export ASLI calculation results to.</li>
+<li><code>FILE_IDENTIFIER</code>: A unique identifier for the ASLI calculation output file.</li>
 </ul>
 <h3 id="data-request">Data Request</h3>
 <p>These parameters control the data request that is submitted to the CDS API:</p>
 <ul>
-<li><strong>START_YEAR</strong>: The first year to request.</li>
-<li><strong>END_YEAR</strong>: The last year to request.</li>
-<li><strong>DATA_ARGS_ERA5</strong>: The full request submitted to the CDS API (e.g. <code>"-s ${START_YEAR} -n ${CURRENT_YEAR}"</code>). Additional arguments can be provided.</li>
+<li><code>START_YEAR</code>: The first year to request.</li>
+<li><code>END_YEAR</code>: The last year to request.</li>
+<li><code>DATA_ARGS_ERA5</code>: The full request submitted to the CDS API (e.g. <code>"-s ${START_YEAR} -n ${CURRENT_YEAR}"</code>). Additional arguments can be provided.</li>
 </ul>
 <h3 id="quality-control">Quality Control</h3>
 <p>These parameters control quality control values:</p>
 <ul>
-<li><strong>SD_FROM_MEAN</strong>: Standard deviations from the mean, to check no values lie outwith <code>SD_FROM_MEAN</code>.</li>
-<li><strong>ACTCENPRES_BOUNDS_MIN</strong>: Minimum value (in hPA) we expect actual_central_pressure to be above.</li>
-<li><strong>ACTCENPRES_BOUNDS_MAX</strong>: Maximum value (in hPA) we expect actual_central_pressure to be below.</li>
+<li><code>SD_FROM_MEAN</code>: Standard deviations from the mean, to check no values lie outwith <code>SD_FROM_MEAN</code>.</li>
+<li><code>ACTCENPRES_BOUNDS_MIN</code>: Minimum value (in hPA) we expect actual_central_pressure to be above.</li>
+<li><code>ACTCENPRES_BOUNDS_MAX</code>: Maximum value (in hPA) we expect actual_central_pressure to be below.</li>
+</ul>
+<h3 id="cleanup">Cleanup</h3>
+<ul>
+<li><code>CLEANUP</code>: If <code>true</code>, will delete data directory as last step following successful execution of the pipeline.</li>
 </ul>
 <h2 id="data-output">Data Output</h2>
 <p>The pipeline allows data output to the JASMIN Object Store, a local file system, or both - depending on where you are running this pipeline and which output file formats you would like to use.</p>
