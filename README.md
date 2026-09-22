@@ -11,8 +11,6 @@
 
 This repository contains a pipeline for operational execution of the Amundsen Sea Ice Low calculations, provided in the `asli` package. The functions in the `asli` package are described in detail in the [package repository](https://github.com/antarctica/asli) `asli` (Hosking & Wyld 2024), and in _Hosking et al. (2016)_.
 
-This pipeline was built using the [icenet-pipeline](https://github.com/icenet-ai/icenet-pipeline) as a template (Byrne et al. 2024).  
-
 ## Get the repository
 Clone this repository into a directory on your computer or HPC.
 ```
