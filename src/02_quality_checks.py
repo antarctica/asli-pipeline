@@ -9,6 +9,22 @@ LAT_MAX = -60.0
 LON_MIN = 170.0
 LON_MAX = 298.0
 
+def _check_and_report_missing_months(series: pd.Series) -> bool:
+    if series.empty:
+        return True
+    
+    unique_dates = series.drop_duplicates().sort_values()
+    expected = pd.date_range(start=unique_dates.min(), end=unique_dates.max(), freq="MS")
+    
+    # Calculate difference between expected and actual
+    missing = expected.difference(unique_dates)
+    
+    if not missing.empty:
+        missing_fmt = missing.strftime("%Y-%m-%d").tolist()
+        raise ValueError(f"Time series missing {len(missing)} month(s): {missing_fmt}")
+        
+    return True
+
 if __name__ == "__main__":
 
     parser = argparse.ArgumentParser()
@@ -48,8 +64,6 @@ if __name__ == "__main__":
     # read in current file
     df = pd.read_csv(args.filename, header=args.header)
 
-    print(df.columns)
-
     # compute actual central pressure standard deviation bounds
     acp_mean = df.loc[:, "actual_central_pressure (hPa)"].mean()
     acp_sd = df.loc[:, "actual_central_pressure (hPa)"].std()
@@ -58,17 +72,17 @@ if __name__ == "__main__":
 
     # define validation schema
     schema = pa.DataFrameSchema({
-        "time (mo)": pa.Column(pa.dtypes.DateTime, coerce=True, unique=True),
-        "longitude (degree)": pa.Column(float, [pa.Check.ge(LON_MIN), pa.Check.le(LON_MAX)]),
-        "latitude (degree)": pa.Column(float, [pa.Check.ge(LAT_MIN), pa.Check.le(LAT_MAX)]),
-        "actual_central_pressure (hPa)": pa.Column(float, [
+        "time (mo)": pa.Column(pa.dtypes.DateTime, checks=pa.Check(_check_and_report_missing_months), coerce=True, unique=True),
+        "longitude (degree)": pa.Column(float, checks=[pa.Check.ge(LON_MIN), pa.Check.le(LON_MAX)]),
+        "latitude (degree)": pa.Column(float, checks=[pa.Check.ge(LAT_MIN), pa.Check.le(LAT_MAX)]),
+        "actual_central_pressure (hPa)": pa.Column(float, checks=[
             pa.Check.ge(0),
             pa.Check.in_range(args.min, args.max),
             pa.Check.in_range(acp_sd_min, acp_sd_max),
             ]),
-        "sector_pressure (hPa) [a]": pa.Column(float, pa.Check.ge(0)),
-        "relative_central_pressure (hPa) [b]": pa.Column(float, pa.Check.le(0)),
-        "data_source [c] [d]": pa.Column(str, pa.Check.isin(["ERA5", "ERA5T"])),
+        "sector_pressure (hPa) [a]": pa.Column(float, checks=pa.Check.ge(0)),
+        "relative_central_pressure (hPa) [b]": pa.Column(float, checks=pa.Check.le(0)),
+        "data_source [c] [d]": pa.Column(str, checks=pa.Check.isin(["ERA5", "ERA5T"])),
     })
 
     schema.validate(df) # validation failure raises error and stops execution, exiting with non-zero exit code
