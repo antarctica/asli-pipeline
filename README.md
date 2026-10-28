@@ -18,47 +18,73 @@ git clone git@github.com:antarctica/asli-pipeline.git asli-pipeline
 ```
 
 ## Creating an environment
+If you're running in a shared linux environment such as an HPC or workstation you may need to load a python module, e.g.:
 ```bash
 # If you are working on JASMIN you will need to load in jaspy and jasr
 module load jaspy 
 
-# Or, on the BAS HPC:
+# Or, on the BAS HPC, load the python module:
 module load python/3.12.3/gcc-11.4.1-n3s7
+```
 
+With python loaded (or if it's already installed locally)
+```
+# create a python virtual environment
 python -m venv asli_env
 
+# or
+python3 -m venv asli_env
+
+# then, activate the environment
 source asli_env/bin/activate
 ```
 
 ### Installing dependencies
-To install all dependencies, inlcuding the `asli` package, run:
+To install all dependencies in your environment, including the `asli` package, run:
+
 ```bash
 pip install -r requirements.txt
 ```
-## Setting up Climate Data Store API
-The `asli` package will not be able to download ERA5 data without access to the [Copernicus Climate Data Store](https://cds.climate.copernicus.eu/cdsapp#!/home).
 
-Follow these instructions to set up CDS API access: [How to Use The CDS API](https://cds-beta.climate.copernicus.eu/how-to-api).
+## Setting up Climate Data Store API
+The `asli` package requires access to the [Copernicus Climate Data Store](https://cds.climate.copernicus.eu/cdsapp#!/home) to download ERA5 data.
+
+Follow these instructions to set up CDS API access: [How to Use The CDS API](https://cds.climate.copernicus.eu/how-to-api).
 
 ```bash
 nano $HOME/.cdsapirc
-# Paste in your {uid} and {api-key} 
+# Paste in your {api-key} 
+```
+
+It should look like this:
+
+```sh
+url: https://cds.climate.copernicus.eu/api
+key: <PERSONAL-ACCESS-TOKEN>
 ```
 
 ## Configuration
-This pipeline revolves around the `ENVS` file to provide the necessary configuration items. This can easily be derived from the `ENVS.example` file to a new file, then symbolically linked. Comments are available in `ENVS.example` to assist you with the editing process.
+This pipeline revolves around the `ENVS` file to provide the necessary configuration items. 
+This can easily be derived from the `ENVS.example` file to a new file, then symbolically linked. 
+Comments are available in `ENVS.example` to assist you with the editing process.
+
 ```bash
+# make a copy of the ENVS file for your own settings
 cp ENVS.example ENVS.myconfig
+
+# symbolically link your ENVS.myconfig file to the ENVS path
 ln -sf ENVS.myconfig ENVS
+
 # Edit ENVS.myconfig to customise parameters for the pipeline
 ```
 
 ## Usage
 You can now run the pipeline:
-```bash
-deactivate # Your environment is set in ENVS, so you do not need to call it
 
-# Download the era5 data first
+```bash
+deactivate # Deactivate your environment. It is set in ENVS, so you do not need to call it
+
+# Download the era5 data first by running the src/00_download_era5.sh script
 bash src/00_download_era5.sh
 
 # Then run the whole pipeline
@@ -84,7 +110,6 @@ The `asli` package uses data from Hersbach, H. et al., (2018) downloaded from th
 
 ## References
 + Brown, M. J., & Chevuturi, A. object_store_tutorial [Computer software]. https://github.com/NERC-CEH/object_store_tutorial
-+ Byrne, J., Ubald, B. N., & Chan, R. icenet-pipeline (Version v0.2.9) [Computer software]. https://github.com/icenet-ai/icenet-pipeline
 + Copernicus Climate Change Service (2023): ERA5 hourly data on single levels from 1940 to present. Copernicus Climate Change Service (C3S) Climate Data Store (CDS), DOI: 10.24381/cds.adbb2d47.
 + Hersbach, H., Bell, B., Berrisford, P., Biavati, G., Horányi, A., Muñoz Sabater, J., Nicolas, J., Peubey, C., Radu, R., Rozum, I., Schepers, D., Simmons, A., Soci, C., Dee, D., Thépaut, J-N. (2018): ERA5 hourly data on single levels from 1940 to present. Copernicus Climate Change Service (C3S) Climate Data Store (CDS), DOI: 10.24381/cds.adbb2d47.
 + Hosking, J. S., A. Orr, T. J. Bracegirdle, and J. Turner (2016), Future circulation changes off West Antarctica: Sensitivity of the Amundsen Sea Low to projected anthropogenic forcing, Geophys. Res. Lett., 43, 367–376, doi:10.1002/2015GL067143.
