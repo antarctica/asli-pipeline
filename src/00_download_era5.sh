@@ -8,7 +8,7 @@ source ENVS
 source ${ASLI_VENV}
 
 # Put all relevant directories in a list
-DIR_LIST=($DATA_DIR $OUTPUT_DIR)
+DIR_LIST=($DATA_DIR $OUTPUT_DIR $RSYNC_LOCATION)
 
 # Create them if they do not exist
 for dir in ${DIR_LIST[@]};

@@ -51,7 +51,7 @@ export S3_BUCKET=""
 export S3_CONFIG_PATH=${S3_CONFIG_PATH:-${PIPELINE_DIRECTORY}/.s3cfg}
 
 # Setting rsync location, if using
-export RSYNC_LOCATION="/users/thozwa/test_destination"
+export RSYNC_LOCATION=${RSYNC_LOCATION:-${PIPELINE_DIRECTORY}/destination}
 
 # Set dates and current year for iteration purposes
 export CURRENT_DATE="`date --utc +"%Y_%m_%d"`"
