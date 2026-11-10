@@ -48,7 +48,7 @@ export VALID_DESTINATIONS=(OBJECT_STORAGE, FILE_SYSTEM, BOTH)
 # The endpoint is set in your .s3cfg file
 export S3_BUCKET=""
 # path to your .s3cfg file, defaults to the pipeline directory
-export S3_CONFIG_PATH={S3_CONFIG_PATH:-${PIPELINE_DIRECTORY}/.s3cfg}
+export S3_CONFIG_PATH=${S3_CONFIG_PATH:-${PIPELINE_DIRECTORY}/.s3cfg}
 
 # Setting rsync location, if using
 export RSYNC_LOCATION="/users/thozwa/test_destination"
