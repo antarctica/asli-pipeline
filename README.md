@@ -27,6 +27,8 @@ module load jaspy
 module load python/3.12.3/gcc-11.4.1-n3s7
 ```
 
+On Debian/Ubuntu, creating the venv needs the `python3-venv` package. If `python3 -m venv` fails with an "ensurepip is not available" error, install it with `sudo apt install python3-venv`.
+
 With python loaded (or if it's already installed locally)
 ```
 # create a python virtual environment
@@ -47,13 +49,16 @@ pip install -r requirements.txt
 ```
 
 ## Setting up Climate Data Store API
-The `asli` package requires access to the [Copernicus Climate Data Store](https://cds.climate.copernicus.eu/cdsapp#!/home) to download ERA5 data.
+The `asli` package requires access to the [Copernicus Climate Data Store](https://cds.climate.copernicus.eu) to download ERA5 data.
 
-Follow these instructions to set up CDS API access: [How to Use The CDS API](https://cds.climate.copernicus.eu/how-to-api).
+Follow these instructions to set up CDS API access: [How to Use The CDS API](https://cds.climate.copernicus.eu/how-to-api). The step `pip install "cdsapi>=0.7.7"` can be skipped, since `requirements.txt` already installs it via `bas-asli`.
+
+The API key can be found on your CDS profile page (log in, then click your name in the top right).
 
 ```bash
 nano $HOME/.cdsapirc
-# Paste in your {api-key} 
+# Paste in your {api-key}
+# Save + Exit (Ctrl+O, Enter, Ctrl+X).
 ```
 
 It should look like this:
