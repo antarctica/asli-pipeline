@@ -14,10 +14,6 @@ from importlib.metadata import version
 # Initialise ROCrate
 crate = ROCrate()
 
-# Read in renv.lock for software version information
-with open('renv.lock') as f:
-    renv_lock = json.load(f)
-
 data_input = crate.add_dataset("data/", "data", properties={
     "name":"ERA5 Data",
     "description":"Folder containing ERA5 land sea mask (era5_lsm.nc) and era5/monthly/era5_mean_sea_level_pressure_monthly_*.nc files.",
@@ -82,17 +78,16 @@ python_pl = crate.add(Entity(crate, "Python", properties={
     "version":platform.python_version()
 }))
 
-r_pl = crate.add(Entity(crate, "r", properties={
-    "@type": "ProgrammingLanguage",
-    "url": ["https://cran.r-project.org/src/base/R-4/R-" + renv_lock["R"]["Version"] + ".tar.gz"],
-    "version": renv_lock["R"]["Version"]
-
-}))
+if len(sys.argv) > 1:
+    bas_version = sys.argv[1]
+else:
+    bash_version = 0
+    Warning("Setting bash version to dumy value 0 as no value passed at command line.")
 
 bash_pl = crate.add(Entity(crate, "bash", properties={
     "@id":"#bash",
     "@type": "ProgrammingLanguage",
-    "version":sys.argv[1]
+    "version":bash_version
 }))
 
 # External Software Packages directly related to this project
@@ -100,14 +95,7 @@ asli_package = crate.add(SoftwareApplication(crate, "asli_package", properties={
     "name": "asli",
     "type": ["File", "SoftwareSourceCode"],
     "url":"https://github.com/antarctica/asli",
-    "version": version("asli")
-}))
-
-butterfly_package = crate.add(SoftwareApplication(crate, "butterfly_package", properties={
-    "name":"butterfly",
-    "type": ["File", "SoftwareSourceCode"],
-    "url":"https://github.com/antarctica/butterfly",
-    "version":renv_lock["Packages"]["butterfly"]["Version"]
+    "version": version("bas-asli")
 }))
 
 # Authors
@@ -142,17 +130,15 @@ data_output["author"] = scott
 pipeline["author"] = thomas
 pipeline_scripts["author"] = thomas
 asli_package["author"] = [david, thomas]
-butterfly_package["author"] = thomas
 output_action["agent"] = thomas
 download_era5_action["agent"] = thomas
 
 # Assigning programming languages
-pipeline_scripts["programming_language"] = [python_pl, bash_pl, r_pl]
+pipeline_scripts["programming_language"] = [python_pl, bash_pl]
 asli_package["programming_language"] = python_pl
-butterfly_package["programming_language"] = r_pl
 
 # Define pipeline inputs and outputs
-pipeline["input"] = [data_input, pipeline_configuration, asli_package, butterfly_package, pipeline_scripts]
+pipeline["input"] = [data_input, pipeline_configuration, asli_package, pipeline_scripts]
 pipeline["output"] = data_output
 
 crate.write("asli_crate")
