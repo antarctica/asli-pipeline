@@ -4,6 +4,10 @@ output/
 venv/
 ENVS
 site/
+asli_crate/
+
+renv/
+.vscode/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
